@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, request, jsonify, Response
+from flask_mysqldb import MySQL
 import json
 import os
 
@@ -6,6 +7,29 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='web/static',
             template_folder='web/templates')
+
+app.config['MYSQL_HOST'] = 'dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'rpawh9q7q2ra0ces'
+app.config['MYSQL_PASSWORD'] = 'vurbee05mr0v4lgs'
+app.config['MYSQL_DB'] = 'jxxv8laq46soz2mq'
+
+mysql = MySQL(app)
+
+mysql = MySQL(app)
+
+#Creating a connection cursor
+cursor = mysql.connection.cursor()
+
+#Executing SQL Statements
+cursor.execute(''' CREATE TABLE table_name(field1, field2...) ''')
+cursor.execute(''' INSERT INTO table_name VALUES(v1,v2...) ''')
+cursor.execute(''' DELETE FROM table_name WHERE condition ''')
+
+#Saving the Actions performed on the DB
+mysql.connection.commit()
+
+#Closing the cursor
+cursor.close()
 
 @app.route('/success/<name>')
 def success(name):
