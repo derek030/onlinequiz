@@ -1,7 +1,10 @@
 from flask import Flask, redirect, url_for, request, jsonify, Response
 import json
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='web/static',
+            template_folder='web/templates')
 
 @app.route('/success/<name>')
 def success(name):
