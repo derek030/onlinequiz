@@ -15,36 +15,36 @@ app.config['MYSQL_DB'] = 'jxxv8laq46soz2mq'
 
 mysql = MySQL(app)
 
-mysql = MySQL(app)
-
-#Creating a connection cursor
-cursor = mysql.connection.cursor()
-
-#Executing SQL Statements
-cursor.execute(''' CREATE TABLE table_name(field1, field2...) ''')
-cursor.execute(''' INSERT INTO table_name VALUES(v1,v2...) ''')
-cursor.execute(''' DELETE FROM table_name WHERE condition ''')
-
-#Saving the Actions performed on the DB
-mysql.connection.commit()
-
-#Closing the cursor
-cursor.close()
-
 @app.route('/success/<name>')
 def success(name):
-   return {"name": "123"}
+    # Creating a connection cursor
+    cursor = mysql.connection.cursor()
 
-@app.route('/login',methods = ['POST', 'GET'])
+    # Executing SQL Statements
+    # cursor.execute(''' CREATE TABLE table_name(field1, field2...) ''')
+    # cursor.execute(''' INSERT INTO table_name VALUES(v1,v2...) ''')
+    # cursor.execute(''' DELETE FROM table_name WHERE condition ''')
+
+    # Saving the Actions performed on the DB
+    mysql.connection.commit()
+
+    # Closing the cursor
+    cursor.close()
+
+    return {"name": "123"}
+
+
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-   #print("122")
-   if request.method == 'POST':
-      user = request.form['nm']
-      return redirect(url_for('success',name = user))
-   else:
-      user = request.args.get('nm')
-      return redirect(url_for('success',name = user))
+    # print("122")
+    if request.method == 'POST':
+        user = request.form['nm']
+        return redirect(url_for('success', name=user))
+    else:
+        user = request.args.get('nm')
+        return redirect(url_for('success', name=user))
+
 
 if __name__ == '__main__':
-   port = int(os.environ.get('PORT', 5000))
-   app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
