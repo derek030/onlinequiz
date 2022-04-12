@@ -1,0 +1,23 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+html{
+    @apply font-body;
+}
+
+.poppins {
+    font-family: "Poppins", "HelveticaNeue", "Arial", sans-serif;
+}
+
+@layer components {
+    .input-label-text{
+        margin: theme(mb-2 );
+        font-size: theme(font-medium);
+        color: theme(text-gray-800);
+        text-md
+    }
+}
