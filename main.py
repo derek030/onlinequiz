@@ -15,6 +15,7 @@ app.config['MYSQL_DB'] = 'jxxv8laq46soz2mq'
 
 mysql = MySQL(app)
 
+
 @app.route('/success/<name>')
 def success(name):
     # Creating a connection cursor
@@ -31,18 +32,35 @@ def success(name):
     # Closing the cursor
     cursor.close()
 
-    return {"name": "123"}
+    return json.dumps({'success': True, 'data': [{"name": "123"}]})
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST'])
 def login():
-    # print("122")
+    errorMsg = ''  # output error message if error occurred
     if request.method == 'POST':
-        user = request.form['nm']
-        return redirect(url_for('success', name=user))
-    else:
-        user = request.args.get('nm')
-        return redirect(url_for('success', name=user))
+        useremail = request.form['email']
+        userpassword = request.form['password']
+        print("useremail:" + useremail)
+        print("userpassword:" + userpassword)
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM User WHERE email = %s AND  pwd = %s", (useremail, userpassword))
+        row_headers = [h[0] for h in cursor.description]  # extract row headers
+        # Fetch one record and return result
+        user = cursor.fetchone()
+        if user is None:  # user not exist
+            errorMsg = 'You have entered an invalid username or password!!!'
+        # Saving the Actions performed on the DB
+        mysql.connection.commit()
+
+        # Closing the cursor
+        cursor.close()
+
+        if errorMsg == '':
+            json_data = [dict(zip(row_headers, user))]
+            return json.dumps({'success': True, 'data': [json_data]}, indent=4)
+        else:
+            return json.dumps({'success': False, 'errorMsg': errorMsg}, indent=4)
 
 
 if __name__ == '__main__':
