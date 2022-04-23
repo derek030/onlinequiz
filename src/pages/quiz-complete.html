@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+    <link href="../../dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Complete | Instatue Quiz Platform</title>
+</head>
+
+<body class="antialiased text-gray-800 poppins">
+    <nav></nav>
+    <main>
+        <section class="absolute w-full h-full bg-cover" style="background-image: url(../media/bkg-pattern.png)">
+            <div class="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
+                <div class="w-full max-w-md space-y-12">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-auto h-40 mx-auto" fill="none"
+                            viewBox="0 0 24 24" stroke="white" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                        <p
+                            class="mt-4 text-xl font-semibold leading-8 tracking-tight text-center text-white lg:text-3xl">
+                            Quest Completed</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <p class="ml-2 text-lg text-white">Result </p>
+                            <p class="mr-2 text-lg text-white">7 / 10</p>
+                        </div>
+                        <div class="flex-grow border-t border-white"></div>
+                        <div class="flex items-center justify-between">
+                            <p class="ml-2 text-lg text-white">Earned </p>
+                            <p class="mr-2 text-lg text-white">85</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <form action="#" method="POST">
+                        <textarea class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 first-letter:focus:text-gray-700 focus:bg-white focus:outline-none focus:ring-purple-500" id="exampleFormControlTextarea1" rows="3"
+                        placeholder="Please leave a comment"></textarea>
+
+                        <!-- Done button -->
+                        <div class="mt-4 text-center">
+                            <button
+                                class="inline-flex items-center px-4 py-2 font-bold bg-yellow-500 rounded-full shadow outline-none text-md active:bg-gray-700 hover:shadow-lg focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Done</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bottom-0 w-full py-6 md:absolute">
+                <div class="container px-4 mx-auto">
+                    <hr class="mb-6 border-gray-700 border-b-1" />
+                    <div class="flex flex-wrap items-center justify-center md:justify-between">
+                        <div class="w-full px-4">
+                            <div class="py-1 text-xs text-white">
+                                Prepared by Chun Hin Chan (103846278) & Hiu Yan Leung (103845754)
+                            </div>
+                        </div>
+                    </div>
+            </footer>
+
+        </section>
+    </main>
+</body>
+<script>
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+    }
+</script>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+  <link href="../../dist/output.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Login | Instatue Quiz Platform</title>
+</head>
+
+<body class="antialiased text-gray-800 poppins">
+  <nav></nav>
+  <main>
+    <section class="absolute w-full h-full bg-gray-700">
+      <div class="container h-full px-4 mx-auto">
+        <div class="flex items-center content-center justify-center h-full">
+          <div class="w-full px-4 lg:w-4/12">
+            <div class="relative flex flex-col w-full min-w-0 py-16 break-words bg-white border-0 rounded-lg shadow-lg">
+              <div class="mb-3 text-center">
+                <h6 class="pb-4 text-2xl font-bold text-gray-700 poppins">
+                  Instatue Quiz Platform
+                </h6>
+                <p class="font-semibold text-gray-600">Login to start quiz</p>
+              </div>
+
+              <div class="flex-auto px-4 lg:px-10">
+                <form>
+                  <div class="relative w-full mb-4">
+                    <label class="mb-2 font-medium text-gray-800 text-md" for="grid-password">Email</label><input
+                      type="email"
+                      class="w-full px-3 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white border-gray-200 rounded-lg focus:outline-none focus:ring-purple-500"
+                      placeholder="Email" style="transition: all 0.15s ease 0s;" />
+                  </div>
+                  <div class="relative w-full mb-4">
+                    <label class="mb-2 font-medium text-gray-800 text-md" for="grid-password">Password</label><input
+                      type="password"
+                      class="w-full px-3 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-purple-500"
+                      placeholder="Password" style="transition: all 0.15s ease 0s;" />
+                  </div>
+
+                  <!-- Remember me & forgot password -->
+                  <ul role="list" class="mb-6 divide-y divide-gray-200">
+                    <li class="flex items-center justify-between text-xs">
+                      <label class="inline-flex items-center cursor-pointer"><input id="customCheckLogin"
+                          type="checkbox"
+                          class="w-5 h-5 ml-1 text-purple-500 border-gray-500 rounded form-checkbox focus:outline-none focus:ring-purple-500"
+                          style="transition: all 0.15s ease 0s;" /><span
+                          class="ml-2 text-xs font-medium text-gray-800">Remember me</span></label>
+                      <div class="flex-shrink-0 ml-4">
+                        <a href="#" class="font-medium text-purple-500">Forgot your password?</a>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <!-- Sign In button -->
+                  <button
+                    class="w-full px-6 py-3 mb-1 mr-1 font-medium text-center text-white bg-purple-500 rounded-full shadow outline-none text-md active:bg-gray-700 hover:shadow-lg focus:outline-none"
+                    type="button" style="transition: all 0.15s ease 0s;">
+                    Sign In
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="absolute bottom-0 w-full pb-6">
+        <div class="container px-4 mx-auto">
+          <hr class="mb-6 border-gray-700 border-b-1" />
+          <div class="flex flex-wrap items-center justify-center md:justify-between">
+            <div class="w-full px-4">
+              <div class="py-1 text-xs text-white">
+                Prepared by Chun Hin Chan (103846278) & Hiu Yan Leung (103845754)
+              </div>
+            </div>
+          </div>
+      </footer>
+
+    </section>
+  </main>
+</body>
+<script>
+  function toggleNavbar(collapseID) {
+    document.getElementById(collapseID).classList.toggle("hidden");
+    document.getElementById(collapseID).classList.toggle("block");
+  }
+</script>
+</html>
