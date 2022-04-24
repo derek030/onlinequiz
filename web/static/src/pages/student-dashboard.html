@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+    <link href="../../dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
+        integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+
+    <title>Student Dashboard | Instatue Quiz Platform</title>
+</head>
+
+<body class="antialiased text-gray-800 poppins">
+    <nav class="flex flex-wrap items-center p-3 bg-purple-500">
+        <a href="#" class="inline-flex items-center p-2 mr-4">
+            <span class="text-xl font-bold tracking-wide text-white ">Instatue Learning Platform</span>
+        </a>
+        <div class="hidden w-full top-navbar lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">
+            <div class="flex flex-col items-start w-full lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto lg:items-center lg:h-auto">
+                <a href="#"
+                    class="items-center justify-center w-full px-3 py-2 text-gray-400 rounded lg:inline-flex lg:w-auto hover:bg-gray-900 hover:text-white">
+                    <span>Support</span>
+                </a>
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="w-12 rounded-full" alt="Avatar"/>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="absolute w-full bg-purple-100 md:h-full">
+            <div class="m-4 lg:m-24">
+                <h2 class="mb-6 text-4xl font-semibold text-purple-700">Questboard</h2>
+                <div class="grid gap-6 md:grid-cols-3 lg:gap-x-12">
+                    <!-- Quest list -->
+                    <div class="order-2 md:order-1 md:col-span-2">
+                        <ul class="space-y-4">
+                            <a href="../pages/quiz-gameplay.html">
+                                <li class="block bg-white rounded-lg">
+                                    <div class="p-6">
+                                        <p class="mb-4 mr-10 text-xl font-medium text-purple-700">Quest Title lorem ipsum
+                                            dolor sit amet,
+                                            consectetur adipiscing elit.</p>
+                                        <div class="flex flex-wrap items-center space-x-4">
+                                            <div class="inline">
+                                                <span class="text-sm text-purple-700">100</span>
+                                                <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                            </div>
+
+                                            <!-- Chip -->
+                                            <span
+                                                class="flex px-4 py-1 text-sm font-semibold text-purple-700 transition duration-300 bg-yellow-500 rounded-full cursor-pointer align-center w-max active:bg-gray-300 ease">Expiring
+                                                soon</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <li class="block bg-white rounded-lg">
+                                <div class="p-6">
+                                    <p class="mb-4 mr-10 text-xl font-medium text-purple-700">Quest Title lorem ipsum
+                                        dolor sit amet,
+                                        consectetur adipiscing elit.</p>
+                                    <div class="flex flex-wrap items-center space-x-4">
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">100</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+
+                                        <!-- Chip -->
+                                        <span
+                                            class="flex px-4 py-1 text-sm font-semibold text-purple-700 transition duration-300 bg-yellow-500 rounded-full cursor-pointer align-center w-max active:bg-gray-300 ease">Expiring
+                                            soon</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="block bg-white rounded-lg">
+                                <div class="p-6">
+                                    <p class="mb-4 mr-10 text-xl font-medium text-purple-700">Quest Title lorem ipsum
+                                        dolor sit amet,
+                                        consectetur adipiscing elit.</p>
+                                    <div class="flex flex-wrap items-center space-x-4">
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">100</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+
+                                        <!-- Chip -->
+                                        <span
+                                            class="flex px-4 py-1 text-sm font-semibold text-purple-700 transition duration-300 bg-yellow-500 rounded-full cursor-pointer align-center w-max active:bg-gray-300 ease">Expiring
+                                            soon</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="block bg-white rounded-lg">
+                                <div class="p-6">
+                                    <p class="mb-4 mr-10 text-xl font-medium text-purple-700">Quest Title lorem ipsum
+                                        dolor sit amet,
+                                        consectetur adipiscing elit.</p>
+                                    <div class="flex flex-wrap items-center space-x-4">
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">100</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+
+                                        <!-- Chip -->
+                                        <span
+                                            class="flex px-4 py-1 text-sm font-semibold text-purple-700 transition duration-300 bg-yellow-500 rounded-full cursor-pointer align-center w-max active:bg-gray-300 ease">Expiring
+                                            soon</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="block bg-white rounded-lg">
+                                <div class="p-6">
+                                    <p class="mb-4 mr-10 text-xl font-medium text-purple-700">Quest Title lorem ipsum
+                                        dolor sit amet,
+                                        consectetur adipiscing elit.</p>
+                                    <div class="flex flex-wrap items-center space-x-4">
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">100</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+
+                                        <!-- Chip -->
+                                        <span
+                                            class="flex px-4 py-1 text-sm font-semibold text-purple-700 transition duration-300 bg-yellow-500 rounded-full cursor-pointer align-center w-max active:bg-gray-300 ease">Expiring
+                                            soon</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right section -->
+                    <div class="order-1 mb-6 space-y-4 md:order-2 lg:mb-0">
+                        <!-- My profile -->
+                        <div class="block bg-purple-200 rounded-lg">
+                            <div class="grid items-center gap-4 p-6 md:grid-cols-3">
+                                <!-- Badge -->
+                                <div>
+                                    <img src="../media/badge.png" class="w-32 mx-auto mb-2 rounded-full" alt="Badge" />
+                                    <p class="font-medium leading-tight text-center text-purple-700 text-md">Badge Title
+                                    </p>
+                                </div>
+
+                                <!-- Statistics -->
+                                <div class="col-span-2 space-y-1">
+                                    <!-- Completed -->
+                                    <div class="flex items-center justify-between">
+                                        <p class="font-semibold text-purple-700">Completed </p>
+                                        <p class="text-purple-700">22</p>
+                                    </div>
+
+                                    <!-- Collected -->
+                                    <div class="flex items-center justify-between">
+                                        <p class="font-semibold text-purple-700">Collected </p>
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">5641</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress bar to next level -->
+                                    <div class="py-2">
+                                        <div class="w-full h-2 bg-white rounded-full">
+                                            <div class="h-2 bg-yellow-500 rounded-l-full" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                    <p class="inline">
+                                        <span class="text-sm font-semibold text-purple-700">560</span>
+                                        <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        <span class="text-sm font-semibold text-purple-700"> to level up</span>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Leaderboard -->
+                        <div class="block space-y-4 bg-purple-200 rounded-lg">
+                            <div class="p-6 text-center">
+                                <p class="mb-4 text-lg font-semibold text-purple-700">Class 4A Leaderboard</p>
+
+                                <!-- Bar chart -->
+                                <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
+                                <script>
+                                    new Chart(document.getElementById("chartjs-1"), {
+                                        "type": "bar",
+                                        "data": {
+                                            "labels": ["Second", "First", "Third"],
+                                            "datasets": [{
+                                                "data": [65, 80, 59],
+                                                "fill": false,
+                                                "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                                                "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                                                "borderWidth": 1
+                                            }]
+                                        },
+                                        "options": {
+                                            "scales": {
+                                                "yAxes": [{
+                                                    "ticks": {
+                                                        "beginAtZero": true
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    });
+                                </script>
+
+                                <!-- Ranking list -->
+                                <ul>
+                                    <li class="flex items-center justify-between py-2 border-b border-purple-500">
+                                        <!-- Student avatar -->
+                                        <div class="inline-flex items-center space-x-2 ">
+                                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                                class="w-12 rounded-full" alt="Avatar" />
+                                            <span class="font-medium text-purple-700 text-md">Student name</span>
+                                        </div>
+
+                                        <!-- Score -->
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">XXX</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+                                    </li>
+                                    <li class="flex items-center justify-between py-2 border-b border-purple-500">
+                                        <!-- Student avatar -->
+                                        <div class="inline-flex items-center space-x-2 ">
+                                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                                class="w-12 rounded-full" alt="Avatar" />
+                                            <span class="font-medium text-purple-700 text-md">Student name</span>
+                                        </div>
+
+                                        <!-- Score -->
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">XXX</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+                                    </li>
+                                    <li class="flex items-center justify-between py-2 border-b border-purple-500">
+                                        <!-- Student avatar -->
+                                        <div class="inline-flex items-center space-x-2 ">
+                                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                                class="w-12 rounded-full" alt="Avatar" />
+                                            <span class="font-medium text-purple-700 text-md">Student name</span>
+                                        </div>
+
+                                        <!-- Score -->
+                                        <div class="inline">
+                                            <span class="text-sm text-purple-700">XXX</span>
+                                            <img class="inline" src="../media/diamond.svg" alt="diamond">
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="bottom-0 w-full py-6 md:absolute">
+                <div class="container px-4 mx-auto">
+                    <hr class="mb-6 border-gray-700 border-b-1" />
+                    <div class="flex flex-wrap items-center justify-center md:justify-between">
+                        <div class="w-full px-4">
+                            <div class="py-1 text-xs text-purple-700">
+                                Prepared by Chun Hin Chan (103846278) & Hiu Yan Leung (103845754)
+                            </div>
+                        </div>
+                    </div>
+            </footer>
+
+        </section>
+    </main>
+</body>
+<script>
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+    }
+</script>
+
+</html>

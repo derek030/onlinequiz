@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+    <link href="../../dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Quiz Gameplay | Instatue Quiz Platform</title>
+</head>
+
+<body class="antialiased text-gray-800 poppins">
+    <nav></nav>
+    <main>
+        <section class="absolute w-full bg-cover md:h-full" style="background-image: url(../media/bkg-pattern.png)">
+            <div class="container px-4 mx-auto mt-6 md:h-full md:mt-0">
+                <div class="flex items-center content-center justify-center h-full">
+                    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+                        <!-- Progress bar -->
+                        <div class="relative bg-white rounded-full">
+                            <div class="items-center px-2 py-2">
+                                <div class="h-6 bg-yellow-500 rounded-l-full dark:bg-gray-300" style="width: 45%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Question -->
+                        <div class="my-8 lg:my-32 lg:text-center">
+                            <p class="mb-6 text-lg font-semibold tracking-wide text-purple-700 uppercase">Question 1</p>
+                            <p class="mt-2 text-xl font-semibold leading-8 tracking-tight text-white lg:text-3xl">What
+                                is the name of the first maths book ever written?<br />Clue: it was written by Euclid
+                                and is
+                                about 2300 years old.</p>
+                        </div>
+
+                        <!-- Answer options -->
+                        <div>
+                            <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+
+                                <!-- Option A -->
+                                <dt class="relative bg-white rounded-lg drop-shadow-2xl">
+                                    <a href="../pages/quiz-complete.html">
+                                        <div
+                                            class="items-center px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:py-8 lg:px-8 lg:flex">
+                                            <div
+                                                class="inline-flex items-center justify-center px-5 py-3 mb-2 mr-4 text-base font-medium text-white bg-purple-600 border border-transparent rounded-md md:mb-0 hover:bg-indigo-700">
+                                                A </div>
+                                            <h2 class="text-2xl font-semibold tracking-tight text-purple-700">
+                                                <span class="block">The Aliums</span>
+                                            </h2>
+                                        </div>
+                                    </a>
+                                </dt>
+
+                                <!-- Option B -->
+
+                                <dt class="relative bg-white rounded-lg drop-shadow-2xl">
+                                    <a href="../pages/quiz-complete.html">
+                                        <div
+                                            class="items-center px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:py-8 lg:px-8 lg:flex">
+                                            <div
+                                                class="inline-flex items-center justify-center px-5 py-3 mb-2 mr-4 text-base font-medium text-white bg-purple-600 border border-transparent rounded-md md:mb-0 hover:bg-indigo-700">
+                                                B </div>
+                                            <h2 class="text-2xl font-semibold tracking-tight text-purple-700">
+                                                <span class="block">The Aliments</span>
+                                            </h2>
+
+                                        </div>
+                                    </a>
+                                </dt>
+
+                                <!-- Option C -- CORRECT -->
+                                <dt class="relative bg-green-500 rounded-lg shadow-inner drop-shadow-sm">
+                                    <a href="../pages/quiz-complete.html">
+                                        <div
+                                            class="items-center px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:py-8 lg:px-8 lg:flex">
+                                            <div
+                                                class="inline-flex items-center justify-center px-5 py-3 mb-2 mr-4 text-base font-medium text-green-600 bg-white border border-transparent rounded-md md:mb-0">
+                                                C </div>
+                                            <h2 class="text-2xl font-semibold tracking-tight text-white">
+                                                <span class="block">The Elements</span>
+                                            </h2>
+                                        </div>
+                                    </a>
+                                </dt>
+
+                                <!-- Option D -->
+                                <dt class="relative bg-white rounded-lg drop-shadow-2xl">
+                                    <a href="../pages/quiz-complete.html">
+                                        <div
+                                            class="items-center px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:py-8 lg:px-8 lg:flex">
+                                            <div
+                                                class="inline-flex items-center justify-center px-5 py-3 mb-2 mr-4 text-base font-medium text-white bg-purple-600 border border-transparent rounded-md md:mb-0 hover:bg-indigo-700">
+                                                D </div>
+                                            <h2 class="text-2xl font-semibold tracking-tight text-purple-700">
+                                                <span class="block">The Ailments</span>
+                                            </h2>
+
+                                        </div>
+                                    </a>
+                                </dt>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bottom-0 w-full py-6 md:absolute">
+                <div class="container px-4 mx-auto">
+                    <hr class="mb-6 border-white border-b-1" />
+                    <div class="flex flex-wrap items-center justify-center md:justify-between">
+                        <div class="w-full px-4">
+                            <div class="py-1 text-xs text-white">
+                                Prepared by Chun Hin Chan (103846278) & Hiu Yan Leung (103845754)
+                            </div>
+                        </div>
+                    </div>
+            </footer>
+
+        </section>
+    </main>
+</body>
+<script>
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+    }
+</script>
+
+</html>
