@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, jsonify, Response
+from flask import Flask, redirect, url_for, request, jsonify, Response, session
 from flask_mysqldb import MySQL
 import json
 import os
@@ -15,25 +15,9 @@ app.config['MYSQL_DB'] = 'jxxv8laq46soz2mq'
 
 mysql = MySQL(app)
 
-
-@app.route('/success/<name>')
-def success(name):
-    # Creating a connection cursor
-    cursor = mysql.connection.cursor()
-
-    # Executing SQL Statements
-    # cursor.execute(''' CREATE TABLE table_name(field1, field2...) ''')
-    # cursor.execute(''' INSERT INTO table_name VALUES(v1,v2...) ''')
-    # cursor.execute(''' DELETE FROM table_name WHERE condition ''')
-
-    # Saving the Actions performed on the DB
-    mysql.connection.commit()
-
-    # Closing the cursor
-    cursor.close()
-
-    return json.dumps({'success': True, 'data': [{"name": "123"}]})
-
+@app.route('/')
+def hello():
+    return redirect("./login.html", code=302)
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -55,13 +39,12 @@ def login():
 
         # Closing the cursor
         cursor.close()
+        result = {}
+        result["success"] = True if errorMsg == '' else False
+        result["errorMsg"] = errorMsg
+        result["data"] = user
 
-        if errorMsg == '':
-            json_data = [dict(zip(row_headers, user))]
-            return json.dumps({'success': True, 'data': [json_data]}, indent=4)
-        else:
-            return json.dumps({'success': False, 'errorMsg': errorMsg}, indent=4)
-
+        return result
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
