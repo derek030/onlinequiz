@@ -15,7 +15,7 @@ module.exports = {
       white: colors.white,
     },
     backgroundImage: {
-      'quiz-pattern': "url('../media/bkg-pattern.png')",
+      'quiz-pattern': "url('../../web/media/bkg-pattern.png')",
     },
     extend: {
       colors: {
