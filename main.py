@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__,
             static_url_path='',
-            static_folder='web/static',
+            static_folder='web/static/src/pages',
             template_folder='web/templates')
 
 app.config['MYSQL_HOST'] = 'dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
