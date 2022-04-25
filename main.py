@@ -7,6 +7,9 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='web/static/src/pages',
             template_folder='web/templates')
+
+app.secret_key = "super secret key"
+
 # Forces all connects to https
 # Reference: https://github.com/GoogleCloudPlatform/flask-talisman
 Talisman(app)
