@@ -8,13 +8,15 @@ app = Flask(__name__,
             static_folder='web/static/src/pages',
             template_folder='web/templates')
 
+Talisman(app)
+
 app.config['MYSQL_HOST'] = 'dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'rpawh9q7q2ra0ces'
 app.config['MYSQL_PASSWORD'] = 'vurbee05mr0v4lgs'
 app.config['MYSQL_DB'] = 'jxxv8laq46soz2mq'
 
 mysql = MySQL(app)
-talisman = Talisman(app)
+
 
 @app.route('/')
 def hello():
