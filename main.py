@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, jsonify, Response, session
+from flask import Flask, redirect, request, Response, session
 from flask_mysqldb import MySQL
 from flask_talisman import Talisman
 import os
@@ -12,7 +12,15 @@ app.secret_key = "super secret key"
 
 # Forces all connects to https
 # Reference: https://github.com/GoogleCloudPlatform/flask-talisman
-Talisman(app)
+csp = {
+    'default-src': [
+        '\'self\'',
+        'https://cdnjs.cloudflare.com/',
+        'https://cdn.jsdelivr.net/',
+        'https://fonts.googleapis.com/'
+    ]
+}
+Talisman(app, content_security_policy=csp)
 
 app.config['MYSQL_HOST'] = 'dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'rpawh9q7q2ra0ces'
