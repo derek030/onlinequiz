@@ -16,12 +16,21 @@ app.config['MYSQL_DB'] = 'jxxv8laq46soz2mq'
 
 mysql = MySQL(app)
 
-@app.route('/') # redirecting to url in flask, ref: https://flask.palletsprojects.com/en/2.1.x/api/
+
+def convert_json(row_headers, list_data):
+    dic = {}
+    for i in range(len(row_headers)):
+        dic[row_headers[i]] = list_data[i]
+    return dic
+
+
+@app.route('/')  # redirecting to url in flask, ref: https://flask.palletsprojects.com/en/2.1.x/api/
 def index():
     if 'email' in session:
         return redirect("./student-dashboard.html", code=302)
     else:
         return redirect("./login.html", code=302)
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -34,12 +43,15 @@ def login():
         print("userpassword:" + userpassword)
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * FROM User WHERE email = %s AND  pwd = %s", (useremail, userpassword))
-        row_headers = [h[0] for h in cursor.description]  # extract row headers
         # Fetch one record and return result
         user = cursor.fetchone()
         if user is None:  # user not exist
             errorMsg = 'You have entered an invalid username or password!!!'
         else:
+            cursor.execute("SELECT user_id, user_name, user_type, score FROM User WHERE email = %s AND  pwd = %s",
+                           (useremail, userpassword))
+            userData = cursor.fetchone()
+            row_headers = [h[0] for h in cursor.description]  # extract row headers
             if isRememberme:
                 session['email'] = request.form['email']
         # Saving the Actions performed on the DB
@@ -50,9 +62,10 @@ def login():
         result = {}
         result["success"] = True if errorMsg == '' else False
         result["errorMsg"] = errorMsg
-        result["data"] = user
+        result["data"] = convert_json(row_headers, userData)
 
         return result
+
 
 @app.route('/logout')
 def logout():
@@ -61,6 +74,7 @@ def logout():
         session.pop('email', None)
 
     return redirect('/')
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
