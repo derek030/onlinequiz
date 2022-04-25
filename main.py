@@ -12,15 +12,8 @@ app.secret_key = "super secret key"
 
 # Forces all connects to https
 # Reference: https://github.com/GoogleCloudPlatform/flask-talisman
-csp = {
-    'default-src': [
-        '\'self\'',
-        'https://cdnjs.cloudflare.com/',
-        'https://cdn.jsdelivr.net/',
-        'https://fonts.googleapis.com/'
-    ]
-}
-Talisman(app, content_security_policy=csp)
+
+Talisman(app)
 
 app.config['MYSQL_HOST'] = 'dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'rpawh9q7q2ra0ces'
