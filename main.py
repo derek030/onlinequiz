@@ -8,7 +8,7 @@ app = Flask(__name__,
             static_folder='web/static/src/pages',
             template_folder='web/templates')
 
-app.secret_key = "super secret key"
+#app.secret_key = "super secret key"
 
 # Forces all connects to https
 # Reference: https://github.com/GoogleCloudPlatform/flask-talisman
@@ -23,9 +23,9 @@ mysql = MySQL(app)
 
 @app.route('/') # redirecting to url in flask, ref: https://flask.palletsprojects.com/en/2.1.x/api/
 def index():
-    if 'email' in session:
-        return redirect("./student-dashboard.html", code=302)
-    else:
+    # if 'email' in session:
+    #     return redirect("./student-dashboard.html", code=302)
+    # else:
         return redirect("./login.html", code=302)
 
 @app.route('/login', methods=['POST'])
@@ -45,9 +45,9 @@ def login():
         user = cursor.fetchone()
         if user is None:  # user not exist
             errorMsg = 'You have entered an invalid username or password!!!'
-        else:
-            if rememberme:
-                session['email'] = request.form['email']
+        # else:
+        #     if rememberme:
+        #         session['email'] = request.form['email']
         # Saving the Actions performed on the DB
         mysql.connection.commit()
 
@@ -60,13 +60,13 @@ def login():
 
         return result
 
-@app.route('/logout')
-def logout():
-    # remove the username from the session if it is there
-    if 'email' in session:
-        session.pop('email', None)
-
-    return redirect('/')
+# @app.route('/logout')
+# def logout():
+#     # remove the username from the session if it is there
+#     if 'email' in session:
+#         session.pop('email', None)
+#
+#     return redirect('/')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
