@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, request, jsonify, Response, session
 from flask_mysqldb import MySQL
-import json
+from flask_talisman import Talisman
 import os
 
 app = Flask(__name__,
@@ -14,6 +14,7 @@ app.config['MYSQL_PASSWORD'] = 'vurbee05mr0v4lgs'
 app.config['MYSQL_DB'] = 'jxxv8laq46soz2mq'
 
 mysql = MySQL(app)
+talisman = Talisman(app)
 
 @app.route('/')
 def hello():
