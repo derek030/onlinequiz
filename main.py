@@ -1,6 +1,5 @@
 from flask import Flask, redirect, request, Response, session
 from flask_mysqldb import MySQL
-from flask_talisman import Talisman
 import os
 
 app = Flask(__name__,
@@ -9,10 +8,6 @@ app = Flask(__name__,
             template_folder='web/templates')
 
 app.secret_key = "super secret key"
-
-# Forces all connects to https
-# Reference: https://github.com/GoogleCloudPlatform/flask-talisman
-#Talisman(app, content_security_policy=None)
 
 app.config['MYSQL_HOST'] = 'dcrhg4kh56j13bnu.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'rpawh9q7q2ra0ces'
