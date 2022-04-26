@@ -1,5 +1,9 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
+html {
+  padding: 0;
+  margin: 0;
+}
 
 body{
     font-family: 'Poppins', sans-serif;
