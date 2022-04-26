@@ -13,9 +13,45 @@
     <link href="../../dist/output.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Login | Instatue Quiz Platform</title>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length).replaceAll('"','');
+                }
+            }
+            return "";
+        }
+
+        function deleteCookie() {
+            document.cookie = "";
+        }
+
+        function abc() {
+            if(document.getElementById('customCheckLogin').value === 'on')
+                setCookie('email',document.getElementById('email').value, 1)
+            else
+                deleteCookie()
+            return true
+        }
+    </script>
 </head>
 
-<body class="antialiased text-gray-800 poppins">
+<body class="antialiased text-gray-800 poppins" onload="document.getElementById('email').value = getCookie('email');">
 <nav></nav>
 <main>
     <section class="absolute w-full h-full bg-gray-700">
@@ -31,11 +67,12 @@
                         </div>
 
                         <div class="flex-auto px-4 lg:px-10">
-                            <form action="./login" method="POST">
+                            <form action="./login" method="POST" onsubmit="abc()">
                                 <div class="relative w-full mb-4">
                                     <label class="mb-2 font-medium text-gray-800 text-md"
                                            for="grid-password">Email</label>
                                     <input
+                                            id="email"
                                         name="email"
                                         type="email"
                                         class="w-full px-3 py-3 text-sm text-gray-700 placeholder-gray-400 bg-white border-gray-200 rounded-lg focus:outline-none focus:ring-purple-500"
@@ -59,7 +96,7 @@
                                         <label class="inline-flex items-center cursor-pointer">
                                             <input
                                                 id="customCheckLogin"
-                                                name="rememberme[]"
+                                                name="rememberme"
                                                 type="checkbox"
                                                 class="w-5 h-5 ml-1 text-purple-500 border-gray-500 rounded form-checkbox focus:outline-none focus:ring-purple-500"
                                                 style="transition: all 0.15s ease 0s;"/>
@@ -95,6 +132,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </footer>
 
     </section>
