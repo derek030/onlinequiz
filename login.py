@@ -14,7 +14,7 @@ def login():
         print("useremail:" + useremail)
         print("userpassword:" + userpassword)
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT user_id, user_name, user_type, score FROM User WHERE email = %s AND  pwd = %s",
+        cursor.execute("SELECT user_id, user_name, user_type FROM User WHERE email = %s AND  pwd = %s",
                        (useremail, userpassword))
         # Fetch one record and return result
         user = cursor.fetchone()
