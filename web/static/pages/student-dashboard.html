@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/starter.css">
+    <link rel="stylesheet" href="../scss/custom.scss">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Student Dashboard | Instatue Quiz Platform</title>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length).replaceAll('"', '');
+                }
+            }
+            return "";
+        }
+
+        function deleteCookie() {
+            document.cookie = "";
+        }
+
+        function abc() {
+            if (document.getElementById('customCheckLogin').value === 'on')
+                setCookie('email', document.getElementById('email').value, 1)
+            else
+                deleteCookie()
+            return true
+        }
+    </script>
+</head>
+
+<body onload="document.getElementById('email').value = getCookie('email');">
+    <!-- Fixed navbar -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Instatue Quiz Platform</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <!-- Right content -->
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <!-- <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li> -->
+                    </ul>
+
+                    <!-- Left content -->
+                    <ul class="navbar-nav mb-2 mb-md-0">
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="py-5 bg-purple">
+        <div class="container py-5">
+            <h2 class="text-primary fw-bolder">Quiz board</h2>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-8">
+                    <!-- Quiz list -->
+                    <div class="d-grid gap-3">
+                        <!-- Quiz card -->
+                        <div class="card purple-card p-2">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit.
+                                </h5>
+                                <h5>
+                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
+                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
+                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="card purple-card p-2">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit.
+                                </h5>
+                                <h5>
+                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
+                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
+                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="card purple-card p-2">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit.
+                                </h5>
+                                <h5>
+                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
+                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
+                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="card purple-card p-2">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit.
+                                </h5>
+                                <h5>
+                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
+                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
+                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="card purple-card p-2">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit.
+                                </h5>
+                                <h5>
+                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
+                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
+                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left content -->
+                <div class="col-md-4 d-grid gap-3">
+                    <!-- My score -->
+                    <div class="h-100 p-4 purple-card rounded-3 ">
+                        <div class="row">
+                            <!-- Badge -->
+                            <div class="col-sm-4">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">Special title treatment</h5>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Statistics -->
+                            <div class="col-sm-8">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                      Completed
+                                      <span>22</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                      Score
+                                      <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
+                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
+                                    </li>
+                                  </ul>
+                            </div>
+                          </div>
+                    </div>
+
+                    <!-- Leaderboard -->
+                    <div class="h-100 p-4 purple-card rounded-3">
+                        <h4 class="text-primary">Leaderboard title</h4>
+                        <p>Or, keep it light and add a border for some added definition to the boundaries of your
+                            content. Be sure to look under the hood at the source HTML here as we've adjusted the
+                            alignment and sizing of both column's content for equal-height.</p>
+                        <button class="btn btn-outline-secondary" type="button">Example button</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-3 mt-4 text-muted border-top">
+        &copy; 2021
+    </footer>
+</body>
+
+<script>
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+    }
+</script>
+
+</html>
