@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__,
             static_url_path='',
-            static_folder='web/static/src/pages',
+            static_folder='web/static/pages',
             template_folder='web/templates')
 
 app.secret_key = "super secret key"
