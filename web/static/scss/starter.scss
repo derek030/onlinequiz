@@ -9,9 +9,7 @@
 // `$body-color` or write more CSS that override's Bootstrap's CSS like so:
 // `body { color: red; }`.
 
-@import "bootstrap/scss/bootstrap";
-@import "icon-list";
-
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 /*! `Custom` Bootstrap 5 theme */
 @import url(https://fonts.googleapis.com/css?family=Poppins:200,300,400,700);
