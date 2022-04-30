@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__,
             static_url_path='',
-            static_folder='web/static/src/pages',
+            static_folder='web/static/pages',
             template_folder='web/templates')
 
 app.secret_key = "super secret key"
@@ -27,6 +27,8 @@ def index():
 
 # import login api
 from login import *
+# import dashboard api
+from dashboard import *
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
