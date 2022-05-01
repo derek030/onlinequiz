@@ -6,8 +6,20 @@ body {
   color: #655CF5 !important;
 }
 
+.dark-purple{
+  color: #3C3792 !important;
+}
+
 .purple-bkg{
   background-color: #655CF5 !important;
+}
+
+.lightest-purple-bkg{
+  background-color: #F1F0FE !important;
+}
+
+.light-purple-bkg{
+  background-color: #E3E1FD !important;
 }
 
 .login-main {

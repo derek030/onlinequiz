@@ -5,12 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
+    <!-- Bootstrap stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="custom.css">
+    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+
     <link rel="shortcut icon" href="./assets/img/favicon.ico" />
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="../assets/css/starter.css">
-    <link rel="stylesheet" href="../scss/custom.scss">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Student Dashboard | Instatue Quiz Platform</title>
     <script>
         function setCookie(cname, cvalue, exdays) {
@@ -53,7 +57,7 @@
 <body onload="document.getElementById('email').value = getCookie('email');">
     <!-- Fixed navbar -->
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top purple-bkg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Instatue Quiz Platform</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -85,127 +89,337 @@
     </header>
 
     <!-- Main content -->
-    <main class="py-5 bg-purple">
-        <div class="container py-5">
-            <h2 class="text-primary fw-bolder">Quiz board</h2>
-            <div class="row align-items-md-stretch">
-                <div class="col-md-8">
-                    <!-- Quiz list -->
-                    <div class="d-grid gap-3">
-                        <!-- Quiz card -->
-                        <div class="card purple-card p-2">
-                            <div class="card-body">
-                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit.
-                                </h5>
-                                <h5>
-                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
-                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
-                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="card purple-card p-2">
-                            <div class="card-body">
-                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit.
-                                </h5>
-                                <h5>
-                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
-                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
-                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="card purple-card p-2">
-                            <div class="card-body">
-                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit.
-                                </h5>
-                                <h5>
-                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
-                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
-                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="card purple-card p-2">
-                            <div class="card-body">
-                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit.
-                                </h5>
-                                <h5>
-                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
-                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
-                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="card purple-card p-2">
-                            <div class="card-body">
-                                <h5 class="card-title text-primary">Quest Title lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit.
-                                </h5>
-                                <h5>
-                                    <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
-                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
-                                    <span class="badge rounded-pill bg-light text-dark">Subject Name</span>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <main class="lightest-purple-bkg">
+        <section class="container">
+            <div class="row">
+                <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-start py-5">
+                    <div class="row">
+                        <div class="mx-auto py-5">
+                            <h2 class="dark-purple fw-bolder">Quiz board</h2>
+                            <div class="row align-items-md-stretch">
+                                <div class="col-md-8 pb-3">
+                                    <!-- Quiz list -->
+                                    <div class="d-grid gap-3">
 
-                <!-- Left content -->
-                <div class="col-md-4 d-grid gap-3">
-                    <!-- My score -->
-                    <div class="h-100 p-4 purple-card rounded-3 ">
-                        <div class="row">
-                            <!-- Badge -->
-                            <div class="col-sm-4">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h5 class="card-title">Special title treatment</h5>
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Quiz card -->
+                                        <div class="card light-purple-bkg p-1">
+                                            <div class="card-body  pe-5">
+                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
+                                                    amet, consectetur                                                 adipiscing elit.
+                                                </h5>
+                                                <h5>
+                                                    <span class="badge rounded-pill dark-purple score-badge "><span
+                                                            class="me-1">100</span>
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /></span>
+                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
+                                                        Name</span>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                            </div>
 
-                            <!-- Statistics -->
-                            <div class="col-sm-8">
-                                <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Completed
-                                      <span>22</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      Score
-                                      <span class="badge rounded-pill text-primary score-badge"><span class="me-1">100</span>
-                                        <img src="../assets/media/diamond.svg" class="img-fluid rounded" alt="..." /></span>
-                                    </li>
-                                  </ul>
-                            </div>
-                          </div>
-                    </div>
+                                <!-- Left content -->
+                                <div class="col-md-4">
+                                    <!-- My score -->
+                                    <div class="p-4 light-purple-bkg rounded-3 mb-3">
+                                        <div class="row">
+                                            <!-- Badge -->
+                                            <div class="col-sm-4">
+                                                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
+                                                    width="80" height="80" xmlns="http://www.w3.org/2000/svg" role="img"
+                                                    aria-label="Placeholder: 80x80" preserveAspectRatio="xMidYMid slice"
+                                                    focusable="false">
+                                                    <title>Placeholder</title>
+                                                    <rect width="100%" height="100%" fill="#A39EF9" /><text x="50%"
+                                                        y="50%" fill="#007bff" dy=".3em"></text>
+                                                </svg>
+                                                <small class="m-0 text-center dark-purple">Badge Title</small>
+                                            </div>
 
-                    <!-- Leaderboard -->
-                    <div class="h-100 p-4 purple-card rounded-3">
-                        <h4 class="text-primary">Leaderboard title</h4>
-                        <p>Or, keep it light and add a border for some added definition to the boundaries of your
-                            content. Be sure to look under the hood at the source HTML here as we've adjusted the
-                            alignment and sizing of both column's content for equal-height.</p>
-                        <button class="btn btn-outline-secondary" type="button">Example button</button>
+                                            <!-- Statistics -->
+                                            <div class="col-sm-8">
+                                                <!-- Quiz completed -->
+                                                <div
+                                                    class="d-flex w-100 align-items-center justify-content-between my-1">
+                                                    <strong class="dark-purple">Completed</strong>
+                                                    <div class="dark-purple">22</div>
+                                                </div>
+
+                                                <!-- Total score -->
+                                                <div
+                                                    class="d-flex w-100 align-items-center justify-content-between my-1">
+                                                    <strong class="dark-purple">Score</strong>
+                                                    <span class="dark-purple">
+                                                        100
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" />
+                                                    </span>
+                                                </div>
+
+                                                <!-- Progress bar -->
+                                                <div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                            style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span class="dark-purple">
+                                                        560
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" /> to level up
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Leaderboard -->
+                                    <div class="p-4 light-purple-bkg rounded-3">
+                                        <h4 class="dark-purple">Leaderboard title</h4>
+                                        <!-- Chart -->
+
+                                        <!-- List -->
+                                        <div class="list-group list-group-flush border-bottom scrollarea">
+
+                                            <!-- Student name & score -->
+                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
+                                                <div>
+                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
+                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
+                                                        role="img" aria-label="Placeholder: 40x40"
+                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                                        <title>Placeholder</title>
+                                                        <rect width="100%" height="100%" fill="#A39EF9" /><text x="50%"
+                                                            y="50%" fill="#007bff" dy=".3em"></text>
+                                                    </svg>
+                                                    <span class="dark-purple">Full Name</span>
+                                                </div>
+                                                <span class="dark-purple">
+                                                    100
+                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                        alt="diamond" />
+                                                </span>
+                                            </div>
+                                            <hr class="my-1 dark-purple">
+                                            
+                                            <!-- Student name & score -->
+                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
+                                                <div>
+                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
+                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
+                                                        role="img" aria-label="Placeholder: 40x40"
+                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                                        <title>Placeholder</title>
+                                                        <rect width="100%" height="100%" fill="#A39EF9" /><text x="50%"
+                                                            y="50%" fill="#007bff" dy=".3em"></text>
+                                                    </svg>
+                                                    <span class="dark-purple">Full Name</span>
+                                                </div>
+                                                <span class="dark-purple">
+                                                    100
+                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                        alt="diamond" />
+                                                </span>
+                                            </div>
+                                            <hr class="my-1 dark-purple">
+                                            
+                                            <!-- Student name & score -->
+                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
+                                                <div>
+                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
+                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
+                                                        role="img" aria-label="Placeholder: 40x40"
+                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                                        <title>Placeholder</title>
+                                                        <rect width="100%" height="100%" fill="#A39EF9" /><text x="50%"
+                                                            y="50%" fill="#007bff" dy=".3em"></text>
+                                                    </svg>
+                                                    <span class="dark-purple">Full Name</span>
+                                                </div>
+                                                <span class="dark-purple">
+                                                    100
+                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                        alt="diamond" />
+                                                </span>
+                                            </div>
+                                            <hr class="my-1 dark-purple">
+                                            
+                                            <!-- Student name & score -->
+                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
+                                                <div>
+                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
+                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
+                                                        role="img" aria-label="Placeholder: 40x40"
+                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                                        <title>Placeholder</title>
+                                                        <rect width="100%" height="100%" fill="#A39EF9" /><text x="50%"
+                                                            y="50%" fill="#007bff" dy=".3em"></text>
+                                                    </svg>
+                                                    <span class="dark-purple">Full Name</span>
+                                                </div>
+                                                <span class="dark-purple">
+                                                    100
+                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                        alt="diamond" />
+                                                </span>
+                                            </div>
+                                            <hr class="my-1 dark-purple">
+                                            
+                                            <!-- Student name & score -->
+                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
+                                                <div>
+                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
+                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
+                                                        role="img" aria-label="Placeholder: 40x40"
+                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                                        <title>Placeholder</title>
+                                                        <rect width="100%" height="100%" fill="#A39EF9" /><text x="50%"
+                                                            y="50%" fill="#007bff" dy=".3em"></text>
+                                                    </svg>
+                                                    <span class="dark-purple">Full Name</span>
+                                                </div>
+                                                <span class="dark-purple">
+                                                    100
+                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                        alt="diamond" />
+                                                </span>
+                                            </div>
+                                            <hr class="my-1 dark-purple">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-        </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="pt-3 mt-4 text-muted border-top">
-        &copy; 2021
-    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 <script>
