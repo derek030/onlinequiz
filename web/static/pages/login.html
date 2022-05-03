@@ -3,18 +3,18 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
 
     <!-- Bootstrap stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="custom.css">
     <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
 
-    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>Login | Instatue Quiz Platform</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -46,7 +46,7 @@
             document.cookie = "";
         }
 
-        function abc() {
+        function handleCookie() {
             if (document.getElementById('customCheckLogin').value === 'on')
                 setCookie('email', document.getElementById('email').value, 1)
             else
@@ -58,72 +58,74 @@
 </head>
 
 <body onload="document.getElementById('email').value = getCookie('email');">
-    <main class="login-main">
-        <section class="container">
-            <div class="row">
-                <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-8 mx-auto">
+<main class="login-main">
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 mx-auto">
 
-                            <!-- Card -->
-                            <div class="card rounded shadow-lg">
-                                <div class="card-body p-5">
-                                    <h3 class="pb-4 text-center fw-bolder">Instatue Quiz Platform</h3>
-                                    <h6 class="text-center gray-600">Login to start quiz</h6>
+                        <!-- Card -->
+                        <div class="card rounded shadow-lg">
+                            <div class="card-body p-5">
+                                <h3 class="pb-4 text-center fw-bolder">Instatue Quiz Platform</h3>
+                                <h6 class="text-center gray-600">Login to start quiz</h6>
 
-                                    <!-- Login form -->
-                                    <form id="loginForm" action="./login" method="POST" onsubmit="abc()">
-                                        <!-- Email input -->
-                                        <div class="form-outline mb-4 rounded">
-                                            <label class="form-label" for="form2Example1">Email</label>
-                                            <input id="email" name="email" type="email" class="form-control"
-                                                placeholder="Email" style="transition: all 0.15s ease 0s;"
-                                                required="required" />
-                                        </div>
+                                <!-- Login form -->
+                                <form id="loginForm" action="./login" method="POST" onsubmit="handleCookie()">
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4 rounded">
+                                        <label class="form-label" for="form2Example1">Email</label>
+                                        <input id="email" name="email" type="email" class="form-control"
+                                               placeholder="Email" style="transition: all 0.15s ease 0s;"
+                                               required="required"/>
+                                    </div>
 
-                                        <!-- Password input -->
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example2">Password</label>
-                                            <input name="password" type="password" class="form-control"
-                                                placeholder="Password" style="transition: all 0.15s ease 0s;"
-                                                required="required" />
-                                        </div>
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example2">Password</label>
+                                        <input name="password" type="password" class="form-control"
+                                               placeholder="Password" style="transition: all 0.15s ease 0s;"
+                                               required="required"/>
+                                    </div>
 
-                                        <!-- Remember me & forgot password -->
-                                        <div class="row mb-4">
-                                            <div class="col d-flex">
-                                                <!-- Checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="customCheckLogin"
-                                                        name="rememberme" type="checkbox" checked
-                                                        style="transition: all 0.15s ease 0s;" />
-                                                    <label class="form-check-label"> Remember me
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col text-end">
-                                                <!-- Simple link -->
-                                                <span class="purple"><a href="#!">Forgot your password?</a></span>
+                                    <!-- Remember me & forgot password -->
+                                    <div class="row mb-4">
+                                        <div class="col d-flex">
+                                            <!-- Checkbox -->
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="customCheckLogin"
+                                                       name="rememberme" type="checkbox" checked
+                                                       style="transition: all 0.15s ease 0s;"/>
+                                                <label class="form-check-label"> Remember me </label>
                                             </div>
                                         </div>
 
-                                        <!-- Submit button -->
-                                        <div class="d-grid gap-2">
-                                            <button id="submit" type="submit"
-                                                class="btn btn-primary btn-block mb-4 rounded-pill btn-lg purple-bkg">Sign
-                                                in</button>
+                                        <div class="col text-end">
+                                            <!-- Simple link -->
+                                            <span class="purple"><a href="#!">Forgot your password?</a></span>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <div class="d-grid gap-2">
+                                        <button id="submit" type="submit"
+                                                class="btn btn-primary btn-block mb-4 rounded-pill btn-lg purple-bkg">
+                                            Sign in
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        </div>
+    </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 <script>
@@ -131,9 +133,10 @@
         document.getElementById(collapseID).classList.toggle("hidden");
         document.getElementById(collapseID).classList.toggle("block");
     }
+
     // get login api response
-    $(function(){
-        $("#loginForm").submit(function(e) {
+    $(function () {
+        $("#loginForm").submit(function (e) {
 
             e.preventDefault(); // avoid to execute the actual submit of the form.
 
@@ -144,8 +147,7 @@
                 type: "POST",
                 url: actionUrl,
                 data: form.serialize(), // serializes the form's elements.
-                success: function(data)
-                {
+                success: function (data) {
                     if (data.success) {
                         window.location.href = "student-dashboard.html"
                     } else {
