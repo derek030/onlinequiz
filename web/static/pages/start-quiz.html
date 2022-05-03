@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Bootstrap stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="custom.css" />
+    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>Student Dashboard | Instatue Quiz Platform</title>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(";");
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == " ") {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length).replaceAll('"', "");
+                }
+            }
+            return "";
+        }
+
+        function deleteCookie() {
+            document.cookie = "";
+        }
+
+        function abc() {
+            if (document.getElementById("customCheckLogin").value === "on")
+                setCookie("email", document.getElementById("email").value, 1);
+            else deleteCookie();
+            return true;
+        }
+    </script>
+</head>
+
+<body id="page-top">
+    <!-- Body -->
+    <div class="cover-container purple-bkg">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="px-4 py-5 my-5 text-center">
+                <h1 class="display-5 fw-bold text-white">Quiz Title</h1>
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead my-5 text-white">Quiz title something short and leading about the collection
+                        below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t
+                        simply skip over it entirely.</p>
+                    <h5 class="justify-content-between align-items-center col-lg-6 
+                    mx-auto">
+                        <strong class="text-white px-4">Score: </strong>
+                        <span class="text-white px-4">
+                            100
+                            <img src="./media/diamond.svg" class="img-fluid rounded" alt="diamond" />
+                        </span>
+                    </h5>
+                    <p class="py-4">
+                        <a href="#" class="w-50 btn btn-lg yellow-bkg fw-bold">Start Quiz</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+
+<script>
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+    }
+</script>
+
+</html>

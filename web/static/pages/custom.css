@@ -22,6 +22,12 @@ body {
   background-color: #E3E1FD !important;
 }
 
+.green-bkg{
+  background-color: #75E209 !important;
+}
+
+
+/* Login page */
 .login-main {
   background-color: #333f51 !important;
 }
@@ -48,6 +54,42 @@ body {
   border-top-right-radius: 0;
 }
 
+/* Quiz gamplay page */
+.cover-container {
+  height: 100vh;
+  min-height: 40rem;
+  padding-top: 4.5rem;
+  padding-bottom: 0;
+  background: url("./media/bkg-pattern.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.yellow-bkg {
+  background-color: #ffc107;
+}
+
+/* Tutor dashboard */
+.nav-tabs .nav-link{
+  color: #3C3792 !important;
+}
+
+.nav-tabs .nav-link.active, .nav-pills .nav-link.active{
+  background-color: #655CF5 !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.form-check-input:checked{
+  background-color:#75E209 !important;
+  border: none !important;
+}
+
+#v-pills-tab{
+  width: 30% !important;
+}
 
 /* Import bootstrap -- STAY AT THE BOTTOM OF THE PAGE */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
