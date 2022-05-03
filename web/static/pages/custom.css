@@ -22,6 +22,12 @@ body {
   background-color: #E3E1FD !important;
 }
 
+.green-bkg{
+  background-color: #75E209 !important;
+}
+
+
+/* Login page */
 .login-main {
   background-color: #333f51 !important;
 }
@@ -47,6 +53,24 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+/* Quiz gamplay page */
+.cover-container {
+  height: 100vh;
+  min-height: 40rem;
+  padding-top: 4.5rem;
+  padding-bottom: 0;
+  background: url("./media/bkg-pattern.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.yellow-bkg {
+  background-color: #FBE70B;
+}
+
 
 
 /* Import bootstrap -- STAY AT THE BOTTOM OF THE PAGE */
