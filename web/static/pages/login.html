@@ -16,6 +16,8 @@
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Login | Instatue Quiz Platform</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();
@@ -70,7 +72,7 @@
                                     <h6 class="text-center gray-600">Login to start quiz</h6>
 
                                     <!-- Login form -->
-                                    <form action="./login" method="POST" onsubmit="abc()">
+                                    <form id="loginForm" action="./login" method="POST" onsubmit="abc()">
                                         <!-- Email input -->
                                         <div class="form-outline mb-4 rounded">
                                             <label class="form-label" for="form2Example1">Email</label>
@@ -108,7 +110,7 @@
 
                                         <!-- Submit button -->
                                         <div class="d-grid gap-2">
-                                            <button type="submit"
+                                            <button id="submit" type="submit"
                                                 class="btn btn-primary btn-block mb-4 rounded-pill btn-lg purple-bkg">Sign
                                                 in</button>
                                         </div>
@@ -129,6 +131,32 @@
         document.getElementById(collapseID).classList.toggle("hidden");
         document.getElementById(collapseID).classList.toggle("block");
     }
+    // get login api response
+    $(function(){
+        $("#loginForm").submit(function(e) {
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var actionUrl = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    if (data.success) {
+                        window.location.href = "student-dashboard.html"
+                    } else {
+                        alert(data['errorMsg'])
+                    }
+                }
+            });
+
+        });
+    })
+
 </script>
 
 </html>
