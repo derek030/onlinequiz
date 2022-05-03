@@ -40,10 +40,17 @@ def login():
         return res
 
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout():
+    errorMsg = ''  # output error message if error occurred
+    result = {}
     # remove the user from the session if it is there
     if 'user' in session:
         session.pop('user', None)
 
-    return redirect('/')
+    result["success"] = True if errorMsg == '' else False
+    result["errorMsg"] = errorMsg
+    result["data"] = ''
+    res = make_response(result)
+
+    return res

@@ -88,7 +88,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light text-small shadow"
                         aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a id="logout" class="dropdown-item">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -307,6 +307,25 @@
         document.getElementById(collapseID).classList.toggle("hidden");
         document.getElementById(collapseID).classList.toggle("block");
     }
+    // call logout api
+    $(document).ready(function(){
+        $('a.dropdown-item').click(function(e) {
+            e.preventDefault()
+
+            $.ajax({
+                type: "POST",
+                url: "/logout",
+                success: function (data) {
+                    if (data.success) {
+                        window.location.href = "login.html" // redirect to login page
+                    } else {
+                        alert(data['errorMsg'])
+                    }
+                }
+            });
+        });
+    });
+
 </script>
 
 </html>
