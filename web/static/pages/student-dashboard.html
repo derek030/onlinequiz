@@ -57,9 +57,9 @@
 <body onload="document.getElementById('email').value = getCookie('email');">
     <!-- Fixed navbar -->
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top purple-bkg">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top purple-bkg px-4">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Instatue Quiz Platform</a>
+                <a class="navbar-brand fw-bolder" href="#">Instatue Quiz Platform</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -79,10 +79,16 @@
                     </ul>
 
                     <!-- Left content -->
-                    <ul class="navbar-nav mb-2 mb-md-0">
-                        <li class="nav-item">
-                        </li>
-                    </ul>
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="" width="32" height="32"
+                                class="rounded-circle me-2">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -105,7 +111,7 @@
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -122,7 +128,7 @@
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -139,7 +145,7 @@
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -156,7 +162,7 @@
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -168,12 +174,12 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- Quiz card -->
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -185,12 +191,12 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- Quiz card -->
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -202,12 +208,12 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- Quiz card -->
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -219,12 +225,12 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- Quiz card -->
                                         <div class="card light-purple-bkg p-1">
                                             <div class="card-body  pe-5">
                                                 <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
+                                                    amet, consectetur adipiscing elit.
                                                 </h5>
                                                 <h5>
                                                     <span class="badge rounded-pill dark-purple score-badge "><span
@@ -322,7 +328,7 @@
                                                 </span>
                                             </div>
                                             <hr class="my-1 dark-purple">
-                                            
+
                                             <!-- Student name & score -->
                                             <div class="d-flex w-100 align-items-center justify-content-between py-1">
                                                 <div>
@@ -343,7 +349,7 @@
                                                 </span>
                                             </div>
                                             <hr class="my-1 dark-purple">
-                                            
+
                                             <!-- Student name & score -->
                                             <div class="d-flex w-100 align-items-center justify-content-between py-1">
                                                 <div>
@@ -364,7 +370,7 @@
                                                 </span>
                                             </div>
                                             <hr class="my-1 dark-purple">
-                                            
+
                                             <!-- Student name & score -->
                                             <div class="d-flex w-100 align-items-center justify-content-between py-1">
                                                 <div>
@@ -385,7 +391,7 @@
                                                 </span>
                                             </div>
                                             <hr class="my-1 dark-purple">
-                                            
+
                                             <!-- Student name & score -->
                                             <div class="d-flex w-100 align-items-center justify-content-between py-1">
                                                 <div>
