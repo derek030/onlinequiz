@@ -16,6 +16,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Student Dashboard | Instatue Quiz Platform</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();
@@ -51,10 +52,45 @@
                 deleteCookie()
             return true
         }
+        // get quiz list api response
+        $(function(){
+                $.ajax({
+                    type: "GET",
+                    url: "/getQuizList",
+                    success: function(data)
+                    {
+                        if (data.success) {
+                            data.data.forEach(function(quiz){
+                                $("#quizlistcontainer").html($("#quizlistcontainer").html()+
+                                    '<!-- Quiz card -->\n' +
+                                    '<div class="card light-purple-bkg p-1">\n' +
+                                    '<div class="card-body  pe-5">\n' +
+                                    '<h5 class="card-title dark-purple">'+
+                                    quiz['quiz_name'] +
+                                    '</h5>\n' +
+                                    '<h5>\n' +
+                                    '<span class="badge rounded-pill dark-purple score-badge "><span\n' +
+                                    'class="me-1">' +
+                                    quiz['quiz_score'] +
+                                    '</span>\n' +
+                                    '<img src="./media/diamond.svg" class="img-fluid rounded"\n' +
+                                    'alt="diamond" /></span>\n' +
+                                    '<span class="badge rounded-pill bg-warning dark-purple">' +
+                                    quiz['subject_name'] +
+                                    '</span>\n' +
+                                    '</h5>\n' +
+                                    '</div>\n' +
+                                    '</div>')
+                            })
+                        }
+                    }
+                });
+        })
+
     </script>
 </head>
 
-<body onload="document.getElementById('email').value = getCookie('email');">
+<body>
     <!-- Fixed navbar -->
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top purple-bkg">
@@ -99,144 +135,7 @@
                             <div class="row align-items-md-stretch">
                                 <div class="col-md-8 pb-3">
                                     <!-- Quiz list -->
-                                    <div class="d-grid gap-3">
-
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Quiz card -->
-                                        <div class="card light-purple-bkg p-1">
-                                            <div class="card-body  pe-5">
-                                                <h5 class="card-title dark-purple">Quest Title lorem ipsum dolor sit
-                                                    amet, consectetur                                                 adipiscing elit.
-                                                </h5>
-                                                <h5>
-                                                    <span class="badge rounded-pill dark-purple score-badge "><span
-                                                            class="me-1">100</span>
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /></span>
-                                                    <span class="badge rounded-pill bg-warning dark-purple">Subject
-                                                        Name</span>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div id="quizlistcontainer" class="d-grid gap-3"></div>
                                 </div>
 
                                 <!-- Left content -->
