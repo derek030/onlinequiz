@@ -76,3 +76,36 @@ def getScore():
         res = make_response(result)
 
         return res
+
+@app.route('/getLeaderboard', methods=['GET'])
+def getLeaderboard():
+    errorMsg = ''  # output error message if error occurred
+    result = {}
+    if request.method == 'GET':
+        user = session['user']
+        studentId = user['user_id']
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT User.user_id, user_name, SUM(score) AS total "
+                       "FROM User, UserQuiz "
+                       "WHERE User.user_id = UserQuiz.user_id "
+                       "GROUP BY User.user_id "
+                       "ORDER BY total DESC")
+        # Fetch records and return result
+        recordlist = cursor.fetchall()
+        print(recordlist)
+        # Saving the Actions performed on the DB
+        mysql.connection.commit()
+        # Closing the cursor
+        cursor.close()
+        # get top five records
+        top5records = []
+        for record in recordlist:
+            if len(top5records) < 5:
+                top5records.append(record)
+        print(top5records)
+        result["success"] = True if errorMsg == '' else False
+        result["errorMsg"] = errorMsg
+        result["data"] = top5records
+        res = make_response(result)
+
+        return res
