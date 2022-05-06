@@ -43,25 +43,24 @@ def getScore():
     badge = ''
     nextbadge = ''
     nextbadgescore = 0
+    completedcount = 0
     if request.method == 'GET':
         user = session['user']
         studentId = user['user_id']
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT score "
-                       "from UserQuiz "
-                       "where user_id = %s", str(studentId))
+        cursor.execute("SELECT SUM(score) AS total, COUNT(status) AS completed "
+                       "FROM UserQuiz "
+                       "WHERE user_id = %s AND status = 'completed'", str(studentId))
         # Fetch records and return result
-        scorelist = cursor.fetchall()
-        print(scorelist)
-        print(len(scorelist))
+        record = cursor.fetchone()
+        print(record)
         # Saving the Actions performed on the DB
         mysql.connection.commit()
         # Closing the cursor
         cursor.close()
-        # sum up all the score from the quiz
-        if len(scorelist) > 0:
-            for score in scorelist:
-                total += score['score']
+        # get completed count and total score
+        total = record['total']
+        completedcount = record['completed']
         # find the current badge level according to the user's total score
         for key, value in badgelevel.items():
             if total >= value:
@@ -73,7 +72,7 @@ def getScore():
         print(nextbadge)
         result["success"] = True if errorMsg == '' else False
         result["errorMsg"] = errorMsg
-        result["data"] = {'current_score': total, 'current_badge': badge, "next_badge": nextbadge, "next_badge_score": nextbadgescore}
+        result["data"] = {'current_score': total, 'current_badge': badge, "next_badge": nextbadge, "next_badge_score": nextbadgescore, "completed": completedcount}
         res = make_response(result)
 
         return res
