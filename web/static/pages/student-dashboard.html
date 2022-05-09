@@ -63,6 +63,71 @@
                 }
             });
         })
+
+        // get score api response
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "/getScore",
+                success: function (data) {
+                    if (data.success) {
+                        // Current score percentage to next badge
+                        var nextStageProgress = (
+                            (data.data['current_score'] / (data.data['current_score'] + data.data['next_badge_score'])) * 100
+                        );
+
+                        // Link nextStageProgress to bootstrap progress bar
+                        $('#progressbar').attr('aria-valuenow', nextStageProgress).css('width', nextStageProgress + '%');
+
+                        $("#mybadge").html($("#mybadge").html() +
+                            '<small class="m-0 text-center dark-purple lh-1 text-uppercase fw-bold">\n' +
+                            data.data['current_badge'] +
+                            '</small>'
+                        )
+
+                        $("#mycompletedquiz").html($("#mycompletedquiz").html() +
+                            '<strong class="dark-purple">Completed</strong>\n' +
+                            '<div class="dark-purple">\n' +
+                            data.data['completed'] +
+                            '</div>'
+                        )
+
+                        $("#mytotalscore").html($("#mytotalscore").html() +
+                            '<strong class="dark-purple">Score</strong>\n' +
+                            '<span class="dark-purple">\n' +
+                            data.data['current_score'] +
+                            '<img src="./media/diamond.svg" class="img-fluid rounded" alt="diamond" />\n' +
+                            '</span>'
+                        )
+
+                        $("#mynextbadgescore").html($("#mynextbadgescore").html() +
+                            (data.data['next_badge_score'] - data.data['current_score']) +
+                            '<img src="./media/diamond.svg" class="img-fluid rounded" alt="diamond" /> \n' +
+                            'to level up'
+                        )
+
+                        // Show corresponding badge image depending on current score
+                        var currentScore = data.data['current_score'];
+                        if (currentScore < 200) {
+                            var bronzeBadge = document.getElementById('bronzeBadge');
+                            bronzeBadge.style.display = 'block';
+                        } else if ((currentScore >= 200 && currentScore <= 499)) {
+                            var silverBadge = document.getElementById('silverBadge');
+                            silverBadge.style.display = 'block';
+                        } else if ((currentScore >= 500 && currentScore <= 999)) {
+                            var goldBadge = document.getElementById('goldBadge');
+                            goldBadge.style.display = 'block';
+                        } else if ((currentScore >= 1000 && currentScore <= 1999)) {
+                            var platinumBadge = document.getElementById('platinumBadge');
+                            platinumBadge.style.display = 'block';
+                        } else if ((currentScore >= 2000)) {
+                            var diamondBadge = document.getElementById('diamondBadge');
+                            diamondBadge.style.display = 'block';
+                        }
+                    }
+                }
+            });
+        })
     </script>
 </head>
 
@@ -136,46 +201,40 @@
                                     <div class="p-4 light-purple-bkg rounded-3 mb-3">
                                         <div class="row">
                                             <!-- Badge -->
-                                            <div class="col-sm-4 text-center">
-                                                <img src="./media/badge-bronze.png" class="img-fluid" alt="">
-                                                <small class="m-0 text-center dark-purple lh-1">Bronze</small>
+                                            <div id="badgeimg" class="col-sm-4 text-center">
+                                                <img id="bronzeBadge" src="./media/badge-bronze.png" class="img-fluid" style="display: none" alt="bronze badge">
+                                                <img id="silverBadge" src="./media/badge-silver.png" class="img-fluid" style="display: none" alt="silver badge">
+                                                <img id="goldBadge" src="./media/badge-gold.png" class="img-fluid" style="display: none" alt="gold badge">
+                                                <img id="platinumBadge" src="./media/badge-platinum.png" class="img-fluid" style="display: none" alt="platinum badge">
+                                                <img id="diamondBadge" src="./media/badge-diamond.png" class="img-fluid" style="display: none" alt="diamond badge">
+                                                <span id="mybadge"></span>
                                             </div>
 
                                             <!-- Statistics -->
                                             <div class="col-sm-8">
                                                 <!-- Quiz completed -->
-                                                <div
+                                                <div id="mycompletedquiz"
                                                     class="d-flex w-100 align-items-center justify-content-between my-1">
-                                                    <strong class="dark-purple">Completed</strong>
-                                                    <div class="dark-purple">22</div>
                                                 </div>
 
                                                 <!-- Total score -->
-                                                <div
+                                                <div id="mytotalscore"
                                                     class="d-flex w-100 align-items-center justify-content-between my-1">
-                                                    <strong class="dark-purple">Score</strong>
-                                                    <span class="dark-purple">
-                                                        100
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" />
-                                                    </span>
                                                 </div>
-
                                                 <!-- Progress bar -->
                                                 <div>
                                                     <div class="progress">
-                                                        <div class="progress-bar bg-warning" role="progressbar"
-                                                            style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                        <div id="progressbar"
+                                                            class="progress-bar yellow-bkg progress-bar-striped progress-bar-animated rounded-left"
+                                                            role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100" style="width: 0%">
+                                                        </div>
                                                     </div>
-                                                    <span class="dark-purple">
-                                                        560
-                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                            alt="diamond" /> to level up
-                                                    </span>
+                                                    <div id="mynextbadgescore" class="dark-purple"></div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <!-- Leaderboard -->
