@@ -48,7 +48,7 @@ def getScore():
         user = session['user']
         studentId = user['user_id']
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT SUM(score) AS total, COUNT(status) AS completed "
+        cursor.execute("SELECT CAST(SUM(score) AS SIGNED) total, COUNT(status) AS completed "
                        "FROM UserQuiz "
                        "WHERE user_id = %s AND status = 'completed'", str(studentId))
         # Fetch records and return result
