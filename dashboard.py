@@ -2,7 +2,7 @@ from flask import request, session, make_response, redirect
 
 from main import app, mysql
 
-badgelevel = {'beginner': 0, 'bronze': 50, 'silver': 100, 'gold': 500, 'platinum': 1000}
+badgelevel = {'bronze': 0, 'silver': 200, 'gold': 500, 'platinum': 1000, 'diamond': 2000}
 
 @app.route('/getQuizList', methods=['GET'])
 def getQuizList():
