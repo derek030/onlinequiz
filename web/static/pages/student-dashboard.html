@@ -128,6 +128,53 @@
                 }
             });
         })
+
+        // get leaderboard api response
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "/getLeaderboard",
+                success: function (data) {
+                    if (data.success) {
+                        data.data.forEach(function (student) {
+                            $("#leaderboardcontainer").html($("#leaderboardcontainer").html() +
+                                // Leaderboard row with subject tag
+                                // '<!-- Student name & score -->\n' +
+                                // '<div class="d-flex text-muted pt-3">\n' +
+                                // '<img src="https://github.com/mdo.png" class="rounded-circle me-2"alt="" width="32" height="32">\n' +
+                                // '<div class="pb-3 mb-0 small lh-sm border-bottom w-100">\n' +
+                                // '<div class="d-flex justify-content-between">\n' +
+                                // '<span class="dark-purple">\n' +
+                                // student['user_name'] +
+                                // '</span>\n' +
+                                // '<span class="dark-purple">\n' +
+                                // student['total'] +
+                                // '<img src="./media/diamond.svg" class="img-fluid rounded" alt="diamond" />\n' +
+                                // '</span>\n' +
+                                // '</div>\n' +
+                                // '<span class="badge rounded-pill bg-warning dark-purple">Subject</span>\n' +
+                                // '</div>\n' +
+                                // '</div>\n' +
+                                // '<hr class="my-1 dark-purple">'
+
+                                '<div class="d-flex w-100 align-items-center justify-content-between my-2">\n' +
+                                '<div> \n' +
+                                '<img src="https://github.com/mdo.png" class="rounded-circle me-2"alt="" width="32" height="32">\n' +
+                                '<strong class="dark-purple">\n' +
+                                student['user_name'] +
+                                '</strong> \n' +
+                                '</div>\n' +
+                                '<div class="dark-purple">\n' +
+                                student['total'] +
+                                '<img src="./media/diamond.svg" class="img-fluid rounded" alt="diamond" />\n' +
+                                '</div>\n' +
+                                '</div>'
+                            )
+                        })
+                    }
+                }
+            });
+        })
     </script>
 </head>
 
@@ -202,11 +249,16 @@
                                         <div class="row">
                                             <!-- Badge -->
                                             <div id="badgeimg" class="col-sm-4 text-center">
-                                                <img id="bronzeBadge" src="./media/badge-bronze.png" class="img-fluid" style="display: none" alt="bronze badge">
-                                                <img id="silverBadge" src="./media/badge-silver.png" class="img-fluid" style="display: none" alt="silver badge">
-                                                <img id="goldBadge" src="./media/badge-gold.png" class="img-fluid" style="display: none" alt="gold badge">
-                                                <img id="platinumBadge" src="./media/badge-platinum.png" class="img-fluid" style="display: none" alt="platinum badge">
-                                                <img id="diamondBadge" src="./media/badge-diamond.png" class="img-fluid" style="display: none" alt="diamond badge">
+                                                <img id="bronzeBadge" src="./media/badge-bronze.png" class="img-fluid"
+                                                    style="display: none" alt="bronze badge">
+                                                <img id="silverBadge" src="./media/badge-silver.png" class="img-fluid"
+                                                    style="display: none" alt="silver badge">
+                                                <img id="goldBadge" src="./media/badge-gold.png" class="img-fluid"
+                                                    style="display: none" alt="gold badge">
+                                                <img id="platinumBadge" src="./media/badge-platinum.png"
+                                                    class="img-fluid" style="display: none" alt="platinum badge">
+                                                <img id="diamondBadge" src="./media/badge-diamond.png" class="img-fluid"
+                                                    style="display: none" alt="diamond badge">
                                                 <span id="mybadge"></span>
                                             </div>
 
@@ -239,117 +291,12 @@
 
                                     <!-- Leaderboard -->
                                     <div class="p-4 light-purple-bkg rounded-3">
-                                        <h4 class="dark-purple">Leaderboard title</h4>
+                                        <h4 class="dark-purple">Leaderboard</h4>
                                         <!-- Chart -->
 
                                         <!-- List -->
-                                        <div class="list-group list-group-flush border-bottom scrollarea">
-
-                                            <!-- Student name & score -->
-                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
-                                                <div>
-                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
-                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
-                                                        role="img" aria-label="Placeholder: 40x40"
-                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                        <title>Placeholder</title>
-                                                        <rect width="100%" height="100%" fill="#A39EF9" />
-                                                        <text x="50%" y="50%" fill="#007bff" dy=".3em"></text>
-                                                    </svg>
-                                                    <span class="dark-purple">Full Name</span>
-                                                </div>
-                                                <span class="dark-purple">
-                                                    100
-                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                        alt="diamond" />
-                                                </span>
-                                            </div>
-                                            <hr class="my-1 dark-purple">
-
-                                            <!-- Student name & score -->
-                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
-                                                <div>
-                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
-                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
-                                                        role="img" aria-label="Placeholder: 40x40"
-                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                        <title>Placeholder</title>
-                                                        <rect width="100%" height="100%" fill="#A39EF9" />
-                                                        <text x="50%" y="50%" fill="#007bff" dy=".3em"></text>
-                                                    </svg>
-                                                    <span class="dark-purple">Full Name</span>
-                                                </div>
-                                                <span class="dark-purple">
-                                                    100
-                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                        alt="diamond" />
-                                                </span>
-                                            </div>
-                                            <hr class="my-1 dark-purple">
-
-                                            <!-- Student name & score -->
-                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
-                                                <div>
-                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
-                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
-                                                        role="img" aria-label="Placeholder: 40x40"
-                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                        <title>Placeholder</title>
-                                                        <rect width="100%" height="100%" fill="#A39EF9" />
-                                                        <text x="50%" y="50%" fill="#007bff" dy=".3em"></text>
-                                                    </svg>
-                                                    <span class="dark-purple">Full Name</span>
-                                                </div>
-                                                <span class="dark-purple">
-                                                    100
-                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                        alt="diamond" />
-                                                </span>
-                                            </div>
-                                            <hr class="my-1 dark-purple">
-
-                                            <!-- Student name & score -->
-                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
-                                                <div>
-                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
-                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
-                                                        role="img" aria-label="Placeholder: 40x40"
-                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                        <title>Placeholder</title>
-                                                        <rect width="100%" height="100%" fill="#A39EF9" />
-                                                        <text x="50%" y="50%" fill="#007bff" dy=".3em"></text>
-                                                    </svg>
-                                                    <span class="dark-purple">Full Name</span>
-                                                </div>
-                                                <span class="dark-purple">
-                                                    100
-                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                        alt="diamond" />
-                                                </span>
-                                            </div>
-                                            <hr class="my-1 dark-purple">
-
-                                            <!-- Student name & score -->
-                                            <div class="d-flex w-100 align-items-center justify-content-between py-1">
-                                                <div>
-                                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded-circle"
-                                                        width="40" height="40" xmlns="http://www.w3.org/2000/svg"
-                                                        role="img" aria-label="Placeholder: 40x40"
-                                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                        <title>Placeholder</title>
-                                                        <rect width="100%" height="100%" fill="#A39EF9" />
-                                                        <text x="50%" y="50%" fill="#007bff" dy=".3em"></text>
-                                                    </svg>
-                                                    <span class="dark-purple">Full Name</span>
-                                                </div>
-                                                <span class="dark-purple">
-                                                    100
-                                                    <img src="./media/diamond.svg" class="img-fluid rounded"
-                                                        alt="diamond" />
-                                                </span>
-                                            </div>
-                                            <hr class="my-1 dark-purple">
-                                        </div>
+                                        <div id="leaderboardcontainer"
+                                            class="list-group list-group-flush border-bottom scrollarea"></div>
                                     </div>
                                 </div>
                             </div>
