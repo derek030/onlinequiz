@@ -85,7 +85,7 @@ def getLeaderboard():
         user = session['user']
         studentId = user['user_id']
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT User.user_id, user_name, SUM(score) AS total "
+        cursor.execute("SELECT User.user_id, user_name, CAST(SUM(score) AS SIGNED) total "
                        "FROM User, UserQuiz "
                        "WHERE User.user_id = UserQuiz.user_id "
                        "GROUP BY User.user_id "
