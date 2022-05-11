@@ -16,6 +16,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Student Dashboard | Instatue Quiz Platform</title>
     <script>
+        // Correct answer feedback
+        function correctAnswer(quizGameplayContent,correctFeedback,wrongFeedback) {
+            document.getElementById("quizGameplayContent").style.display = "none";
+            document.getElementById("correctFeedback").style.display = "block";
+            document.getElementById("wrongFeedback").style.display = "none";
+        };
+
+        // Wrong answer feedback
+        function wrongAnswer(quizGameplayContent,correctFeedback,wrongFeedback) {
+            document.getElementById("quizGameplayContent").style.display = "none";
+            document.getElementById("correctFeedback").style.display = "none";
+            document.getElementById("wrongFeedback").style.display = "block";
+        };
+
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -57,7 +71,33 @@
     <!-- Body -->
     <div class="cover-container purple-bkg">
         <div class="container px-4 px-lg-5 h-100">
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <!-- Correct answer feedback element -->
+            <div id="correctFeedback" class="row py-5" style="display: none">
+                <div class="col-lg-6 col-md-8 mx-auto text-center">
+                    <img src="./media/feedback-correct.png" alt="Correct">
+                    <h1 class="correct-feedback">Correct</h1>
+                    <h2 class="correct-feedback">
+                        <span>+</span>
+                        <span>20</span>
+                        <img src="./media/diamond-with-border.png" class="img-fluid rounded diamondscore" alt="diamond"/>
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Wrong answer feedback element -->
+            <div id="wrongFeedback" class="row py-5" style="display: none">
+                <div class="col-lg-6 col-md-8 mx-auto text-center">
+                    <img src="./media/feedback-wrong.png" alt="Wrong">
+                    <h1 class="wrong-feedback">Wrong</h1>
+                    <h2 class="wrong-feedback">
+                        <span>-</span>
+                        <span>20</span>
+                        <img src="./media/diamond-with-border.png" class="img-fluid rounded diamondscore" alt="diamond"/>
+                    </h2>
+                </div>
+            </div>
+
+            <div id="quizGameplayContent" class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <!-- Progress bar -->
                 <div class="col-lg-12 align-self-end">
                     <div class="progress rounded-pill" style="height: 30px">

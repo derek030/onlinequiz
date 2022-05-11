@@ -91,5 +91,28 @@ body {
   width: 30% !important;
 }
 
+/* Quiz gameplay */
+.correct-feedback {
+  color: white;
+  text-shadow: 6px 6px #0cc509;
+  font-size: 5em !important;
+  text-transform: uppercase;
+  margin: 0.5em 0 0.5em 0;
+  font-weight: 700;
+}
+
+.wrong-feedback {
+  color: white;
+  text-shadow: 6px 6px #FF4F4F;
+  font-size: 5em !important;
+  text-transform: uppercase;
+  margin: 0.5em 0 0.5em 0;
+  font-weight: 700;
+}
+
+.diamondscore{
+  width: 15%;
+}
+
 /* Import bootstrap -- STAY AT THE BOTTOM OF THE PAGE */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';

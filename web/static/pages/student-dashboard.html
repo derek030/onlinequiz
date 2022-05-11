@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Student Dashboard | Instatue Quiz Platform</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
         // Show spinner when ajax is loading
         $(document).ajaxStart(function () {
@@ -40,7 +41,7 @@
                         data.data.forEach(function (quiz) {
                             $("#quizlistcontainer").html($("#quizlistcontainer").html() +
                                 '<!-- Quiz card -->\n' +
-                                '<div class="card light-purple-bkg p-1">\n' +
+                                '<div class="quiz-item card light-purple-bkg p-1">\n' +
                                 '<div class="card-body  pe-5">\n' +
                                 '<h5 class="card-title dark-purple">' +
                                 quiz['quiz_name'] +
@@ -57,7 +58,8 @@
                                 '</span>\n' +
                                 '</h5>\n' +
                                 '</div>\n' +
-                                '</div>')
+                                '</div>'
+                            )
                         })
                     }
                 }
@@ -317,6 +319,7 @@
         document.getElementById(collapseID).classList.toggle("hidden");
         document.getElementById(collapseID).classList.toggle("block");
     }
+
     // call logout api
     $(document).ready(function () {
         $('a.dropdown-item').click(function (e) {
@@ -336,6 +339,14 @@
         });
     });
 
+    // select quiz
+    const quizitems = Array.from(document.getElementsByClassName("quiz-item"));
+    quizitems.forEach(quizitem => {
+        quizitem.addEventListener("click", e => {
+            const selectedQuiz = e.target;
+            console.log('Clicked');
+        });
+    });
 </script>
 
 </html>
