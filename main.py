@@ -29,6 +29,8 @@ def index():
 from login import *
 # import dashboard api
 from dashboard import *
+# import gameplay api
+from gameplay import *
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
