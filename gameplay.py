@@ -134,3 +134,33 @@ def updateUserQuizStatus():
         res = make_response(result)
 
         return res
+
+@app.route('/getQuizResult', methods=['POST','GET'])
+def getQuizResult():
+    errorMsg = ''  # output error message if error occurred
+    result = {}
+    if request.method == 'GET':
+        args = request.args
+        quizId = args['quizid']
+        user = session['user']
+        studentId = user['user_id']
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT user_id, quiz_id, score, current_progress, status, sum(is_correct) as correctcount "
+                       "FROM UserQuiz, UserQuizQuestion "
+                       "WHERE UserQuiz.user_quiz_id = UserQuizQuestion.user_quiz_id "
+                       "AND user_id = %s and quiz_id = %s", (str(studentId), str(quizId)))
+        # Fetch records and return result
+        record = cursor.fetchall()
+        if len(record) == 0:  # cannot find quiz record
+            errorMsg = 'record not found'
+        # Saving the Actions performed on the DB
+        mysql.connection.commit()
+        # Closing the cursor
+        cursor.close()
+
+        result["success"] = True if errorMsg == '' else False
+        result["errorMsg"] = errorMsg
+        result["data"] = record
+        res = make_response(result)
+
+        return res
