@@ -19,6 +19,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length).replaceAll('"', '');
+                }
+            }
+            return "";
+        }
+
+        function deleteCookie() {
+            document.cookie = "";
+        }
+
+        function eraseCookie(cname) {
+            document.cookie = cname+'=; Max-Age=-99999999;';
+        }
+
         // Show spinner when ajax is loading
         $(document).ajaxStart(function () {
             $("#loader").show();
@@ -42,6 +73,9 @@
                             $("#quizlistcontainer").html($("#quizlistcontainer").html() +
                                 '<!-- Quiz card -->\n' +
                                 '<div class="quiz-item card light-purple-bkg p-1">\n' +
+                                '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">'+
+                                quiz['quiz_id'] +
+                                '</div>'+
                                 '<div class="card-body  pe-5">\n' +
                                 '<h5 class="card-title dark-purple">' +
                                 quiz['quiz_name'] +
@@ -340,12 +374,11 @@
     });
 
     // select quiz
-    const quizitems = Array.from(document.getElementsByClassName("quiz-item"));
-    quizitems.forEach(quizitem => {
-        quizitem.addEventListener("click", e => {
-            const selectedQuiz = e.target;
-            console.log('Clicked');
-        });
+    $('body').on('click', '.quiz-item', function(event) {
+        var quizid = $(this).children('#hidden-quiz-id').text();
+        eraseCookie('quizid')
+        setCookie('quizid', quizid, 1)
+        window.location.href = "start-quiz.html" // redirect to quiz start page
     });
 </script>
 
