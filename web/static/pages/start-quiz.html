@@ -38,13 +38,13 @@
         // Show spinner when ajax is loading
         $(document).ajaxStart(function () {
             $("#loader").show();
-            $("#studentDashboardContent").hide();
+            $("#QuizStartContent").hide();
         });
 
         // Hide spinner when ajax finish loading
         $(document).ajaxComplete(function () {
             $("#loader").hide();
-            $("#studentDashboardContent").show();
+            $("#QuizStartContent").show();
         });
         // get quiz detail
         $(function () {
@@ -96,7 +96,7 @@
                     <h4 class="purple my-4">Loading...</h4>
                 </div>
             </div>
-            <div id="studentDashboardContent">
+            <div id="QuizStartContent">
                 <div id="titlecontainer"></div>
                 <!--                <h1 class="display-5 fw-bold text-white my-3">Quiz Title</h1>-->
                 <div class="col-lg-6 mx-auto">
@@ -121,8 +121,9 @@
     }
 
     // start quiz
-    $(".startbutton").click(function () {
-        window.location.href = "quiz-gameplay.html"
+    $(".startbutton").click(function (e) {
+        e.preventDefault()
+        window.location.href = "quiz-gameplay.html" // redirect to game play html
     });
 </script>
 
