@@ -70,11 +70,12 @@
                 success: function (data) {
                     if (data.success) {
                         data.data.forEach(function (quiz) {
-                            if (quiz['quiz_status'] == "expired"){  //Expired quiz
+                            console.log(quiz['quiz_status'])
+                            if (quiz['quiz_status'] === "expired" || quiz['status'] === "completed"){  //Expired quiz or completed quiz
                                 $("#quizlistcontainer").html(
                                     $("#quizlistcontainer").html() +
                                     '<!-- Quiz card -->\n' +
-                                    '<div class="quiz-item greyed-out p-1">\n' +
+                                    '<div class="invalid-quiz-item greyed-out p-1">\n' +
                                     '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">'+
                                     quiz['quiz_id'] +
                                     '</div>'+
