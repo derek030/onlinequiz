@@ -54,6 +54,22 @@ body {
   border-top-right-radius: 0;
 }
 
+/* Student dashboard page */
+.quiz-list-item{
+  background-color: #E3E1FD;
+  color: #3C3792;
+}
+
+.greyed-out{
+  background-color: #e4e4e4;
+  color: #B9B9BA;
+  border-radius: 0.25rem;
+}
+
+.opacity-25{
+  opacity: 25% !important;
+}
+
 /* Quiz gamplay page */
 .cover-container {
   height: 100vh;
@@ -69,6 +85,16 @@ body {
 
 .yellow-bkg {
   background-color: #ffc107;
+}
+
+#correctFeedback{
+  transition: 0.5s;
+  display: none;
+}
+
+#correctFeedback.show{
+  opacity: 0;
+  display: block;
 }
 
 /* Tutor dashboard */
@@ -113,6 +139,11 @@ body {
 .diamondscore{
   width: 15%;
 }
+
+.progress-bar{
+  transition: width 5s linear;
+}
+
 
 /* Import bootstrap -- STAY AT THE BOTTOM OF THE PAGE */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';

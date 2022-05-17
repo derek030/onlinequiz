@@ -70,18 +70,45 @@
                 success: function (data) {
                     if (data.success) {
                         data.data.forEach(function (quiz) {
-                            $("#quizlistcontainer").html($("#quizlistcontainer").html() +
+                            if (quiz['quiz_status'] == "expired"){  //Expired quiz
+                                $("#quizlistcontainer").html(
+                                    $("#quizlistcontainer").html() +
+                                    '<!-- Quiz card -->\n' +
+                                    '<div class="quiz-item greyed-out p-1">\n' +
+                                    '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">'+
+                                    quiz['quiz_id'] +
+                                    '</div>'+
+                                    '<div class="card-body pe-5">\n' +
+                                    '<h5 class="card-title ">' +
+                                    quiz['quiz_name'] +
+                                    '</h5>\n' +
+                                    '<h5>\n' +
+                                    '<span class="badge rounded-pill score-badge greyed-out "><span\n' +
+                                    'class="me-1">' +
+                                    quiz['quiz_score'] +
+                                    '</span>\n' +
+                                    '<img src="./media/diamond.svg" class="img-fluid rounded opacity-25 alt="diamond" /></span>\n' +
+                                    '<span class="badge rounded-pill bg-warning dark-purple opacity-25">' +
+                                    quiz['subject_name'] +
+                                    '</span>\n' +
+                                    '</h5>\n' +
+                                    '</div>\n' +
+                                    '</div>'
+                                )
+                            } else {    //Valid quiz
+                                $("#quizlistcontainer").html(
+                                $("#quizlistcontainer").html() +
                                 '<!-- Quiz card -->\n' +
-                                '<div class="quiz-item card light-purple-bkg p-1">\n' +
+                                '<div class="quiz-item card quiz-list-item p-1">\n' +
                                 '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">'+
                                 quiz['quiz_id'] +
                                 '</div>'+
                                 '<div class="card-body  pe-5">\n' +
-                                '<h5 class="card-title dark-purple">' +
+                                '<h5 class="card-title ">' +
                                 quiz['quiz_name'] +
                                 '</h5>\n' +
                                 '<h5>\n' +
-                                '<span class="badge rounded-pill dark-purple score-badge "><span\n' +
+                                '<span class="badge rounded-pill score-badge quiz-list-item"><span\n' +
                                 'class="me-1">' +
                                 quiz['quiz_score'] +
                                 '</span>\n' +
@@ -94,6 +121,7 @@
                                 '</div>\n' +
                                 '</div>'
                             )
+                            }
                         })
                     }
                 }
