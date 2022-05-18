@@ -88,6 +88,7 @@ def getLeaderboard():
         cursor.execute("SELECT User.user_id, user_name, CAST(SUM(score) AS SIGNED) total "
                        "FROM User, UserQuiz "
                        "WHERE User.user_id = UserQuiz.user_id "
+                       "AND user_type = 'student'"
                        "GROUP BY User.user_id "
                        "ORDER BY total DESC")
         # Fetch records and return result
