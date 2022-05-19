@@ -60,6 +60,8 @@ def getScore():
         cursor.close()
         # get completed count and total score
         total = record['total']
+        if total is None:
+            total = 0
         completedcount = record['completed']
         # find the current badge level according to the user's total score
         for key, value in badgelevel.items():
