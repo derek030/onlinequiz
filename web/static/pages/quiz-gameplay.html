@@ -88,7 +88,7 @@
             document.getElementById('quizGameplayContent').style.display = 'none'
             setTimeout(function(){
                 document.getElementById('correctFeedback').style.display = 'none'
-            }, 1200)
+            }, 1400)
         }
 
         // Wrong answer feedback
@@ -97,24 +97,28 @@
             document.getElementById('quizGameplayContent').style.display = 'none'
             setTimeout(function(){
                 document.getElementById('wrongFeedback').style.display = 'none'
-            }, 1200)
+            }, 1400)
         }
 
-        function updateContent() {
-            // Progress bar timer - 15 seconds
+        // Progress bar timer - 15 seconds
+        function countDownTimer(){
             let interval = 10;
             var countDown = setInterval(() =>{
                 interval--;
                 let i = interval / 10 * 100
                 if (interval > 0){
                     $('.progress-bar').css('width', i + '%');
-                } else {
+                } else if (interval <= 0){
                     clearInterval(countDown)
                     $('.progress-bar').css('width', 0 + '%');
-                }
-            }, 1500);
+                } 
+            }, 1000); 
+        }
 
+        function updateContent() {          
             if (questionlist.length > 0) {
+                countDownTimer()
+                
                 var currentquestion = questionlist[pointer]
                 $("#progressbarcontainer").html("")
                 $("#progressbarcontainer").html($("#progressbarcontainer").html() +
@@ -181,6 +185,11 @@
                     '     </div>\n' +
                     '</div>'
                 )
+
+                // Times up action
+                setTimeout(() =>{
+                    checkAnswer('nil');
+                }, 15000);
             } else {
                 // quiz finish
             }
@@ -232,8 +241,6 @@
                 });
             })
         }
-
-        
     </script>
 </head>
 
