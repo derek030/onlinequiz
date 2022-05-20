@@ -11,13 +11,13 @@ def getQuizList():
     if request.method == 'GET':
         #args = request.args
         user = session['user']
-        studentId = user['user_id']
+        userId = user['user_id']
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT UserQuiz.quiz_id,quiz_name, quiz_status, quiz_score, current_progress, score, status, subject_name "
                        "from UserQuiz, Quiz, Subject "
                        "where UserQuiz.quiz_id = Quiz.quiz_id "
                        "and Quiz.subject_id = Subject.subject_id "
-                       "and user_id = %s", str(studentId))
+                       "and user_id = %s", str(userId))
         # Fetch records and return result
         quizList = cursor.fetchall()
         if len(quizList) == 0:  # user does not have quiz
