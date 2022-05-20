@@ -21,7 +21,13 @@ mysql = MySQL(app)
 # redirecting to url in flask, ref: https://flask.palletsprojects.com/en/2.1.x/api/
 def index():
     if 'user' in session:
-        return redirect("./student-dashboard.html", code=302)
+        print(session['user'])
+        user = session['user']
+        userType = user['user_type']
+        if userType == 'Tutor':
+            return redirect("./tutor-dashboard.html", code=302)
+        else:
+            return redirect("./student-dashboard.html", code=302)
     else:
         return redirect("./login.html", code=302)
 
