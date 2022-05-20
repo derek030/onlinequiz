@@ -98,11 +98,13 @@
                                 '            21/63 completed\n' +
                                 '        </div> -->\n' +
                                 '        <!-- Quiz status toggle -->\n' +
-                                '        <div\n' +
-                                '                class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                '        <div class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
                                 '            <div class="form-check form-switch">\n' +
                                 '                <input class="form-check-input" type="checkbox"\n' +
                                 '                       id="flexSwitchCheckDefault" />\n' +
+                                '                <div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
+                                quiz['quiz_id'] +
+                                '                </div>' +
                                 '            </div>\n' +
                                 '        </div>\n' +
                                 '    </div>\n' +
@@ -118,6 +120,7 @@
                 }
             });
         })
+
         // get subject list api response
         $(function () {
             $.ajax({
@@ -147,10 +150,36 @@
                 }
             });
         })
+
+        function updateQuizStatus(quizid, checked) {
+            console.log(quizid)
+            console.log(checked)
+            let qstatus = "valid";
+            if(!checked)
+                qstatus = "expired";
+            console.log(qstatus)
+            $(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/updateQuizStatus",
+                    data: {
+                        qid: quizid,
+                        currentStatus: qstatus
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            // Do nothing
+                        } else {
+                            alert(data['errorMsg'])
+                        }
+                    }
+                });
+            })
+        }
     </script>
 </head>
 
-<body onload="document.getElementById('email').value = getCookie('email');">
+<body>
 <!-- Fixed navbar -->
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top purple-bkg px-5">
@@ -402,6 +431,13 @@
                 }
             });
         });
+    });
+
+    // select quiz
+    $('body').on('click', '.form-check-input', function (event) {
+        var quizid = $(this).next('#hidden-quiz-id').text();
+        var checked = $(this).is(":checked")
+        updateQuizStatus(quizid, checked)
     });
 </script>
 
