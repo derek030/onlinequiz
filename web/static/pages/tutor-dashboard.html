@@ -72,11 +72,6 @@
                     if (data.success) {
                         data.data.forEach(function (quiz) {
                             console.log(quiz['quiz_status'])
-                            let quizStatus = "";
-                            if (quiz['quiz_status'] === 'valid') {
-                                quizStatus = "";
-                            }
-                            console.log(quizStatus)
                             $("#quizlistcontainer").html(
                                 $("#quizlistcontainer").html() +
                                 '<!-- Quiz card -->\n' +
@@ -106,12 +101,46 @@
                                 '        <div\n' +
                                 '                class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
                                 '            <div class="form-check form-switch">\n' +
-                                '                <input class="form-check-input" type="checkbox" role="switch"\n' +
+                                '                <input class="form-check-input" type="checkbox"\n' +
                                 '                       id="flexSwitchCheckDefault" />\n' +
                                 '            </div>\n' +
                                 '        </div>\n' +
                                 '    </div>\n' +
                                 '</div>'
+                            )
+                            // if (quiz['quiz_status'] === 'valid') {
+                            //     $('.flexSwitchCheckDefault').prop('checked', true);
+                            // } else {
+                            //     $('.flexSwitchCheckDefault').prop('checked', false);
+                            // }
+                        })
+                    }
+                }
+            });
+        })
+        // get subject list api response
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "/getEnrolledSubject",
+                success: function (data) {
+                    if (data.success) {
+                        $("#tabcontainer").html(
+                            $("#tabcontainer").html() +
+                            '<button class="nav-link active" id="v-pills-all-tab"\n' +
+                            '        data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"\n' +
+                            '        role="tab" aria-controls="v-pills-all"\n' +
+                            '        aria-selected="true">All Subjects\n' +
+                            '</button>'
+                        )
+                        data.data.forEach(function (subject) {
+                            $("#tabcontainer").html(
+                                $("#tabcontainer").html() +
+                                '<button class="nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"\n' +
+                                '        data-bs-target="#v-pills-group1" type="button" role="tab"\n' +
+                                '        aria-controls="v-pills-group1" aria-selected="false">' +
+                                subject['subject_name'] +
+                                '</button>'
                             )
                         })
                     }
@@ -211,15 +240,16 @@
                                         <!-- Vertical tab menu -->
                                         <div class="nav flex-column nav-pills me-3 w-30" id="v-pills-tab" role="tablist"
                                              aria-orientation="vertical">
-                                            <button class="nav-link active" id="v-pills-all-tab"
-                                                    data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"
-                                                    role="tab" aria-controls="v-pills-all"
-                                                    aria-selected="true">All Subjects
-                                            </button>
-                                            <button class="nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"
-                                                    data-bs-target="#v-pills-group1" type="button" role="tab"
-                                                    aria-controls="v-pills-group1" aria-selected="false">Math
-                                            </button>
+                                            <div id="tabcontainer"></div>
+<!--                                            <button class="nav-link active" id="v-pills-all-tab"-->
+<!--                                                    data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"-->
+<!--                                                    role="tab" aria-controls="v-pills-all"-->
+<!--                                                    aria-selected="true">All Subjects-->
+<!--                                            </button>-->
+<!--                                            <button class="nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"-->
+<!--                                                    data-bs-target="#v-pills-group1" type="button" role="tab"-->
+<!--                                                    aria-controls="v-pills-group1" aria-selected="false">Math-->
+<!--                                            </button>-->
                                         </div>
 
                                         <!-- Tab content -->

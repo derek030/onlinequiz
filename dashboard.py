@@ -112,3 +112,31 @@ def getLeaderboard():
         res = make_response(result)
 
         return res
+
+@app.route('/getEnrolledSubject', methods=['GET'])
+def getEnrolledSubject():
+    errorMsg = ''  # output error message if error occurred
+    result = {}
+    if request.method == 'GET':
+        user = session['user']
+        userId = user['user_id']
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT UserSubject.user_id, user_name, user_type, UserSubject.subject_id, subject_name "
+        "FROM UserSubject, User, Subject "
+        "WHERE UserSubject.user_id = User.user_id "
+        "AND UserSubject.subject_id = Subject.subject_id "
+        "AND User.user_id = %s ", str(userId))
+        # Fetch records and return result
+        recordlist = cursor.fetchall()
+        print(recordlist)
+        # Saving the Actions performed on the DB
+        mysql.connection.commit()
+        # Closing the cursor
+        cursor.close()
+
+        result["success"] = True if errorMsg == '' else False
+        result["errorMsg"] = errorMsg
+        result["data"] = recordlist
+        res = make_response(result)
+
+        return res
