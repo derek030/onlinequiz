@@ -74,49 +74,85 @@
                     if (data.success) {
                         data.data.forEach(function (quiz) {
                             console.log(quiz['quiz_status'])
-                            $("#quizlistcontainer").html(
-                                $("#quizlistcontainer").html() +
-                                '<!-- Quiz card -->\n' +
-                                '<div class="card light-purple-bkg">\n' +
-                                '    <div class="row card-body pe-5 align-items-center justify-content-between">\n' +
-                                '        <!-- Quiz title & tags -->\n' +
-                                '        <div class="col-md-6 themed-grid-col">\n' +
-                                '            <h6 class="dark-purple">\n' +
-                                quiz['quiz_name'] +
-                                '            </h6>\n' +
-                                '            <span class="badge rounded-pill bg-warning dark-purple">' +
-                                quiz['subject_name'] +
-                                '           </span>\n' +
-                                '        </div>\n' +
-                                '        <!-- Average grade -->\n' +
-                                '        <!-- <div\n' +
-                                '            class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
-                                '            <span class="dark-purple me-2">87%</span>\n' +
-                                '            <span class="badge purple-bkg text-white rounded-pill">B</span>\n' +
-                                '        </div> -->\n' +
-                                '        <!-- No. of students completed quiz -->\n' +
-                                '        <!-- <div\n' +
-                                '            class="col-md-2 themed-grid-col dark-purple d-flex justify-content-lg-center my-1">\n' +
-                                '            21/63 completed\n' +
-                                '        </div> -->\n' +
-                                '        <!-- Quiz status toggle -->\n' +
-                                '        <div class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
-                                '            <div class="form-check form-switch">\n' +
-                                '                <input class="form-check-input" type="checkbox"\n' +
-                                '                       id="flexSwitchCheckDefault" />\n' +
-                                '                <div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
-                                quiz['quiz_id'] +
-                                '                </div>' +
-                                '            </div>\n' +
-                                '        </div>\n' +
-                                '    </div>\n' +
-                                '</div>'
-                            )
-                            // if (quiz['quiz_status'] === 'valid') {
-                            //     $('.flexSwitchCheckDefault').prop('checked', true);
-                            // } else {
-                            //     $('.flexSwitchCheckDefault').prop('checked', false);
-                            // }
+                            if (quiz['quiz_status'] === 'valid') {
+                                $("#quizlistcontainer").html(
+                                    $("#quizlistcontainer").html() +
+                                    '<!-- Quiz card -->\n' +
+                                    '<div class="card light-purple-bkg">\n' +
+                                    '    <div class="row card-body pe-5 align-items-center justify-content-between">\n' +
+                                    '        <!-- Quiz title & tags -->\n' +
+                                    '        <div class="col-md-6 themed-grid-col">\n' +
+                                    '            <h6 class="dark-purple">\n' +
+                                    quiz['quiz_name'] +
+                                    '            </h6>\n' +
+                                    '            <span class="badge rounded-pill bg-warning dark-purple">' +
+                                    quiz['subject_name'] +
+                                    '           </span>\n' +
+                                    '        </div>\n' +
+                                    '        <!-- Average grade -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <span class="dark-purple me-2">87%</span>\n' +
+                                    '            <span class="badge purple-bkg text-white rounded-pill">B</span>\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- No. of students completed quiz -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col dark-purple d-flex justify-content-lg-center my-1">\n' +
+                                    '            21/63 completed\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- Quiz status toggle -->\n' +
+                                    '        <div class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <div class="form-check form-switch">\n' +
+                                    '                <input class="form-check-input" type="checkbox" checked="checked"\n' +
+                                    '                       id="flexSwitchCheckDefault" />\n' +
+                                    '                <div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
+                                    quiz['quiz_id'] +
+                                    '                </div>' +
+                                    '            </div>\n' +
+                                    '        </div>\n' +
+                                    '    </div>\n' +
+                                    '</div>'
+                                )
+                            } else {
+                                $("#quizlistcontainer").html(
+                                    $("#quizlistcontainer").html() +
+                                    '<!-- Quiz card -->\n' +
+                                    '<div class="card light-purple-bkg">\n' +
+                                    '    <div class="row card-body pe-5 align-items-center justify-content-between">\n' +
+                                    '        <!-- Quiz title & tags -->\n' +
+                                    '        <div class="col-md-6 themed-grid-col">\n' +
+                                    '            <h6 class="dark-purple">\n' +
+                                    quiz['quiz_name'] +
+                                    '            </h6>\n' +
+                                    '            <span class="badge rounded-pill bg-warning dark-purple">' +
+                                    quiz['subject_name'] +
+                                    '           </span>\n' +
+                                    '        </div>\n' +
+                                    '        <!-- Average grade -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <span class="dark-purple me-2">87%</span>\n' +
+                                    '            <span class="badge purple-bkg text-white rounded-pill">B</span>\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- No. of students completed quiz -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col dark-purple d-flex justify-content-lg-center my-1">\n' +
+                                    '            21/63 completed\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- Quiz status toggle -->\n' +
+                                    '        <div class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <div class="form-check form-switch">\n' +
+                                    '                <input class="form-check-input" type="checkbox"\n' +
+                                    '                       id="flexSwitchCheckDefault" />\n' +
+                                    '                <div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
+                                    quiz['quiz_id'] +
+                                    '                </div>' +
+                                    '            </div>\n' +
+                                    '        </div>\n' +
+                                    '    </div>\n' +
+                                    '</div>'
+                                )
+                            }
                         })
                     }
                 }
