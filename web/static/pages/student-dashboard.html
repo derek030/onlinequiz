@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="custom.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-avatar@1.0.3/dist/avatar.min.css" rel="stylesheet">  
     <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
 
     <link rel="shortcut icon" href="./assets/img/favicon.ico" />
@@ -47,7 +48,7 @@
         }
 
         function eraseCookie(cname) {
-            document.cookie = cname+'=; Max-Age=-99999999;';
+            document.cookie = cname + '=; Max-Age=-99999999;';
         }
 
         // Show spinner when ajax is loading
@@ -71,14 +72,14 @@
                     if (data.success) {
                         data.data.forEach(function (quiz) {
                             console.log(quiz['quiz_status'])
-                            if (quiz['quiz_status'] === "expired" || quiz['status'] === "completed"){  //Expired quiz or completed quiz
+                            if (quiz['quiz_status'] === "expired" || quiz['status'] === "completed") {  //Expired quiz or completed quiz
                                 $("#quizlistcontainer").html(
                                     $("#quizlistcontainer").html() +
                                     '<!-- Quiz card -->\n' +
                                     '<div class="invalid-quiz-item greyed-out p-1">\n' +
-                                    '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">'+
+                                    '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
                                     quiz['quiz_id'] +
-                                    '</div>'+
+                                    '</div>' +
                                     '<div class="card-body pe-5">\n' +
                                     '<h5 class="card-title ">' +
                                     quiz['quiz_name'] +
@@ -98,30 +99,30 @@
                                 )
                             } else {    //Valid quiz
                                 $("#quizlistcontainer").html(
-                                $("#quizlistcontainer").html() +
-                                '<!-- Quiz card -->\n' +
-                                '<div class="quiz-item card quiz-list-item p-1">\n' +
-                                '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">'+
-                                quiz['quiz_id'] +
-                                '</div>'+
-                                '<div class="card-body  pe-5">\n' +
-                                '<h5 class="card-title ">' +
-                                quiz['quiz_name'] +
-                                '</h5>\n' +
-                                '<h5>\n' +
-                                '<span class="badge rounded-pill score-badge quiz-list-item"><span\n' +
-                                'class="me-1">' +
-                                quiz['quiz_score'] +
-                                '</span>\n' +
-                                '<img src="./media/diamond.svg" class="img-fluid rounded"\n' +
-                                'alt="diamond" /></span>\n' +
-                                '<span class="badge rounded-pill bg-warning dark-purple">' +
-                                quiz['subject_name'] +
-                                '</span>\n' +
-                                '</h5>\n' +
-                                '</div>\n' +
-                                '</div>'
-                            )
+                                    $("#quizlistcontainer").html() +
+                                    '<!-- Quiz card -->\n' +
+                                    '<div class="quiz-item card quiz-list-item p-1">\n' +
+                                    '<div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
+                                    quiz['quiz_id'] +
+                                    '</div>' +
+                                    '<div class="card-body  pe-5">\n' +
+                                    '<h5 class="card-title ">' +
+                                    quiz['quiz_name'] +
+                                    '</h5>\n' +
+                                    '<h5>\n' +
+                                    '<span class="badge rounded-pill score-badge quiz-list-item"><span\n' +
+                                    'class="me-1">' +
+                                    quiz['quiz_score'] +
+                                    '</span>\n' +
+                                    '<img src="./media/diamond.svg" class="img-fluid rounded"\n' +
+                                    'alt="diamond" /></span>\n' +
+                                    '<span class="badge rounded-pill bg-warning dark-purple">' +
+                                    quiz['subject_name'] +
+                                    '</span>\n' +
+                                    '</h5>\n' +
+                                    '</div>\n' +
+                                    '</div>'
+                                )
                             }
                         })
                     }
@@ -224,7 +225,9 @@
 
                                 '<div class="d-flex w-100 align-items-center justify-content-between my-2">\n' +
                                 '<div> \n' +
-                                '<img src="https://github.com/mdo.png" class="rounded-circle me-2"alt="" width="32" height="32">\n' +
+                                '<span class="avatar avatar-24 purple-bkg text-white rounded-circle me-1"> \n' +
+                                student['user_name'].substring(0,1) +
+                                '</span>\n' +
                                 '<strong class="dark-purple">\n' +
                                 student['user_name'] +
                                 '</strong> \n' +
@@ -233,7 +236,8 @@
                                 student['total'] +
                                 '<img src="./media/diamond.svg" class="img-fluid rounded" alt="diamond" />\n' +
                                 '</div>\n' +
-                                '</div>'
+                                '</div>\n' +
+                                '<hr/>'
                             )
                         })
                     }
@@ -271,8 +275,10 @@
                     <div class="dropdown">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                class="rounded-circle me-2">
+
+                            <!-- Avatar Icon -->
+                            <img class="avatar avatar-32 bg-light rounded-circle text-white p-2"
+     src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light text-small shadow"
                             aria-labelledby="dropdownUser1">
@@ -350,6 +356,78 @@
                                                     <div id="mynextbadgescore" class="dark-purple"></div>
                                                 </div>
                                             </div>
+
+                                            <!-- Scoring system -->
+                                            <div class="list-group list-group-flush border-bottom scrollarea mt-3">
+                                                <!-- Diamond -->
+                                                <div class="d-flex w-100 align-items-center justify-content-between my-2">
+                                                    <div>
+                                                        <img src="./media/badge-diamond.png"
+                                                            class="rounded-circle me-2 img-fluid" alt="" width="40" height="40">
+                                                        <strong class="dark-purple ">Diamond</strong>
+                                                    </div>
+                                                    <div class="dark-purple">2000
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" />
+                                                    </div>
+                                                </div>
+                                                <hr/>
+
+                                                <!-- Platinum -->
+                                                <div class="d-flex w-100 align-items-center justify-content-between my-2">
+                                                    <div>
+                                                        <img src="./media/badge-platinum.png"
+                                                            class="rounded-circle me-2 img-fluid" alt="" width="40" height="40">
+                                                        <strong class="dark-purple">Platinum</strong>
+                                                    </div>
+                                                    <div class="dark-purple">1000
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" />
+                                                    </div>
+                                                </div>
+                                                <hr/>
+
+                                                <!-- Gold -->
+                                                <div class="d-flex w-100 align-items-center justify-content-between my-2">
+                                                    <div>
+                                                        <img src="./media/badge-gold.png"
+                                                            class="rounded-circle me-2 img-fluid" alt="" width="40" height="40">
+                                                        <strong class="dark-purple">Gold</strong>
+                                                    </div>
+                                                    <div class="dark-purple">500
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" />
+                                                    </div>
+                                                </div>
+                                                <hr/>
+
+                                                <!-- Silver -->
+                                                <div class="d-flex w-100 align-items-center justify-content-between my-2">
+                                                    <div>
+                                                        <img src="./media/badge-silver.png"
+                                                            class="rounded-circle me-2 img-fluid" alt="" width="40" height="40">
+                                                        <strong class="dark-purple">Silver</strong>
+                                                    </div>
+                                                    <div class="dark-purple">200
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" />
+                                                    </div>
+                                                </div>
+                                                <hr/>
+
+                                                <!-- Bronze -->
+                                                <div class="d-flex w-100 align-items-center justify-content-between my-2 ">
+                                                    <div>
+                                                        <img src="./media/badge-bronze.png"
+                                                            class="rounded-circle me-2 img-fluid" alt="" width="40" height="40">
+                                                        <strong class="dark-purple">Bronze</strong>
+                                                    </div>
+                                                    <div class="dark-purple">0
+                                                        <img src="./media/diamond.svg" class="img-fluid rounded"
+                                                            alt="diamond" />
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -403,7 +481,7 @@
     });
 
     // select quiz
-    $('body').on('click', '.quiz-item', function(event) {
+    $('body').on('click', '.quiz-item', function (event) {
         var quizid = $(this).children('#hidden-quiz-id').text();
         eraseCookie('quizid')
         setCookie('quizid', quizid, 1)
