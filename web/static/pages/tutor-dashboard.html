@@ -56,13 +56,13 @@
         // Show spinner when ajax is loading
         $(document).ajaxStart(function () {
             $("#loader").show();
-            $("#studentDashboardContent").hide();
+            $("#tutorDashboardContent").hide();
         });
 
         // Hide spinner when ajax finish loading
         $(document).ajaxComplete(function () {
             $("#loader").hide();
-            $("#studentDashboardContent").show();
+            $("#tutorDashboardContent").show();
         });
 
         // get quiz list api response
@@ -327,11 +327,18 @@
 <!-- Main content -->
 <main class="lightest-purple-bkg">
     <section class="container col-lg-9 mx-auto py-md-5">
-        <div class="row">
+        <div id="loader" class="row py-5">
+            <div class="col-lg-6 col-md-8 mx-auto text-center py-5">
+                <div class="spinner-border purple" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h4 class="purple my-4">Loading...</h4>
+            </div>
+        </div>
+        <div id="tutorDashboardContent" class="row">
             <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-start py-5">
                 <div class="row">
                     <div class="mx-auto py-5">
-
                         <!-- Tab menu -->
                         <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-quiz-tab" data-bs-toggle="tab"
