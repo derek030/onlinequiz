@@ -20,6 +20,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
+        let subjectidlist = []
+
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -72,56 +74,220 @@
                     if (data.success) {
                         data.data.forEach(function (quiz) {
                             console.log(quiz['quiz_status'])
-                            let quizStatus = "";
                             if (quiz['quiz_status'] === 'valid') {
-                                quizStatus = "";
+                                $("#quizlistcontainer").html(
+                                    $("#quizlistcontainer").html() +
+                                    '<!-- Quiz card -->\n' +
+                                    '<div class="card light-purple-bkg">\n' +
+                                    '    <div class="row card-body pe-5 align-items-center justify-content-between">\n' +
+                                    '        <!-- Quiz title & tags -->\n' +
+                                    '        <div class="col-md-6 themed-grid-col">\n' +
+                                    '            <h6 class="dark-purple">\n' +
+                                    quiz['quiz_name'] +
+                                    '            </h6>\n' +
+                                    '            <span class="badge rounded-pill bg-warning dark-purple">' +
+                                    quiz['subject_name'] +
+                                    '           </span>\n' +
+                                    '        </div>\n' +
+                                    '        <!-- Average grade -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <span class="dark-purple me-2">87%</span>\n' +
+                                    '            <span class="badge purple-bkg text-white rounded-pill">B</span>\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- No. of students completed quiz -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col dark-purple d-flex justify-content-lg-center my-1">\n' +
+                                    '            21/63 completed\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- Quiz status toggle -->\n' +
+                                    '        <div class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <div class="form-check form-switch">\n' +
+                                    '                <input class="form-check-input" type="checkbox" checked="checked"\n' +
+                                    '                       id="flexSwitchCheckDefault" />\n' +
+                                    '                <div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
+                                    quiz['quiz_id'] +
+                                    '                </div>' +
+                                    '            </div>\n' +
+                                    '        </div>\n' +
+                                    '    </div>\n' +
+                                    '</div>'
+                                )
+                            } else {
+                                $("#quizlistcontainer").html(
+                                    $("#quizlistcontainer").html() +
+                                    '<!-- Quiz card -->\n' +
+                                    '<div class="card light-purple-bkg">\n' +
+                                    '    <div class="row card-body pe-5 align-items-center justify-content-between">\n' +
+                                    '        <!-- Quiz title & tags -->\n' +
+                                    '        <div class="col-md-6 themed-grid-col">\n' +
+                                    '            <h6 class="dark-purple">\n' +
+                                    quiz['quiz_name'] +
+                                    '            </h6>\n' +
+                                    '            <span class="badge rounded-pill bg-warning dark-purple">' +
+                                    quiz['subject_name'] +
+                                    '           </span>\n' +
+                                    '        </div>\n' +
+                                    '        <!-- Average grade -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <span class="dark-purple me-2">87%</span>\n' +
+                                    '            <span class="badge purple-bkg text-white rounded-pill">B</span>\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- No. of students completed quiz -->\n' +
+                                    '        <!-- <div\n' +
+                                    '            class="col-md-2 themed-grid-col dark-purple d-flex justify-content-lg-center my-1">\n' +
+                                    '            21/63 completed\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- Quiz status toggle -->\n' +
+                                    '        <div class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
+                                    '            <div class="form-check form-switch">\n' +
+                                    '                <input class="form-check-input" type="checkbox"\n' +
+                                    '                       id="flexSwitchCheckDefault" />\n' +
+                                    '                <div id="hidden-quiz-id" class="hidden-quiz-id" style="display: none;">' +
+                                    quiz['quiz_id'] +
+                                    '                </div>' +
+                                    '            </div>\n' +
+                                    '        </div>\n' +
+                                    '    </div>\n' +
+                                    '</div>'
+                                )
                             }
-                            console.log(quizStatus)
-                            $("#quizlistcontainer").html(
-                                $("#quizlistcontainer").html() +
-                                '<!-- Quiz card -->\n' +
-                                '<div class="card light-purple-bkg">\n' +
-                                '    <div class="row card-body pe-5 align-items-center justify-content-between">\n' +
-                                '        <!-- Quiz title & tags -->\n' +
-                                '        <div class="col-md-6 themed-grid-col">\n' +
-                                '            <h6 class="dark-purple">\n' +
-                                quiz['quiz_name'] +
-                                '            </h6>\n' +
-                                '            <span class="badge rounded-pill bg-warning dark-purple">' +
-                                quiz['subject_name'] +
-                                '           </span>\n' +
-                                '        </div>\n' +
-                                '        <!-- Average grade -->\n' +
-                                '        <!-- <div\n' +
-                                '            class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
-                                '            <span class="dark-purple me-2">87%</span>\n' +
-                                '            <span class="badge purple-bkg text-white rounded-pill">B</span>\n' +
-                                '        </div> -->\n' +
-                                '        <!-- No. of students completed quiz -->\n' +
-                                '        <!-- <div\n' +
-                                '            class="col-md-2 themed-grid-col dark-purple d-flex justify-content-lg-center my-1">\n' +
-                                '            21/63 completed\n' +
-                                '        </div> -->\n' +
-                                '        <!-- Quiz status toggle -->\n' +
-                                '        <div\n' +
-                                '                class="col-md-2 themed-grid-col d-flex justify-content-lg-center my-1">\n' +
-                                '            <div class="form-check form-switch">\n' +
-                                '                <input class="form-check-input" type="checkbox" role="switch"\n' +
-                                '                       id="flexSwitchCheckDefault" />\n' +
-                                '            </div>\n' +
-                                '        </div>\n' +
-                                '    </div>\n' +
-                                '</div>'
-                            )
                         })
                     }
                 }
             });
         })
+
+        // get subject list api response
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "/getEnrolledSubject",
+                success: function (data) {
+                    if (data.success) {
+                        $("#tabcontainer").html(
+                            $("#tabcontainer").html() +
+                            '<button class="subject nav-link active" id="v-pills-all-tab"\n' +
+                            '        data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"\n' +
+                            '        role="tab" aria-controls="v-pills-all"\n' +
+                            '        aria-selected="true">All Subjects\n' +
+                            '</button>'
+                        )
+                        data.data.forEach(function (subject) {
+                            subjectidlist.push(subject['subject_id'])
+                            $("#tabcontainer").html(
+                                $("#tabcontainer").html() +
+                                '<button class="subject nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"\n' +
+                                '        data-bs-target="#v-pills-group1" type="button" role="tab"\n' +
+                                '        aria-controls="v-pills-group1" aria-selected="false">' +
+                                subject['subject_name'] +
+                                '</button>' +
+                                '<div id="hidden-subject-id" class="hidden-subject-id" style="display: none;">' +
+                                subject['subject_id'] +
+                                '</div>'
+                            )
+                        })
+                        showStudentlist("")
+                    }
+                }
+            });
+        })
+
+        function updateQuizStatus(quizid, checked) {
+            console.log(quizid)
+            console.log(checked)
+            let qstatus = "valid";
+            if (!checked)
+                qstatus = "expired";
+            console.log(qstatus)
+            $(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/updateQuizStatus",
+                    data: {
+                        qid: quizid,
+                        currentStatus: qstatus
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            // Do nothing
+                        } else {
+                            alert(data['errorMsg'])
+                        }
+                    }
+                });
+            })
+        }
+
+        function showStudentlist(subjectid) {
+            console.log(subjectid)
+            if (subjectid === "") {
+                subjectid = subjectidlist.join(', ');
+            }
+            $(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/getSubjectStudentResults",
+                    data: {
+                        subjectid: subjectid
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            $("#studentcontainer").html("")
+                            data.data.forEach(function (student) {
+                                $("#studentcontainer").html(
+                                    $("#studentcontainer").html() +
+                                    '<div class="card light-purple-bkg">\n' +
+                                    '    <div class="row card-body g-4 row-cols-1 row-cols-lg-3 p-lg-3 align-items-center">\n' +
+                                    '        <!-- Checkbox, avatar, student name, subject tags -->\n' +
+                                    '        <div class="col-lg-7 d-flex align-items-center">\n' +
+                                    '            <div>\n' +
+                                    '                <div class="d-flex align-items-center">\n' +
+                                    '                    <div class="flex-shrink-0 me-3">\n' +
+                                    '                        <img src="https://github.com/mdo.png" alt=""\n' +
+                                    '                             width="32" height="32"\n' +
+                                    '                             class="rounded-circle me-2">\n' +
+                                    '                    </div>\n' +
+                                    '                    <div>\n' +
+                                    '                        <h6 class="dark-purple">' +
+                                    student['user_name'] +
+                                    '                        </h6>\n' +
+                                    '                        <ul class="d-flex list-unstyled mt-auto mb-0">\n' +
+                                    '                            <li class="d-flex align-items-center me-2">\n' +
+                                    '                                <span class="badge rounded-pill bg-warning dark-purple">' +
+                                    student['subject_name'] +
+                                    '                                </span>\n' +
+                                    '                            </li>\n' +
+                                    '                        </ul>\n' +
+                                    '                    </div>\n' +
+                                    '                </div>\n' +
+                                    '            </div>\n' +
+                                    '        </div>\n' +
+                                    '        <!-- Average grade -->\n' +
+                                    '        <!-- <div class="col-lg-2 d-flex align-items-start">\n' +
+                                    '            <span class="dark-purple me-2">87%</span>\n' +
+                                    '            <span class="badge purple-bkg text-white rounded-pill">B</span>\n' +
+                                    '        </div> -->\n' +
+                                    '        <!-- Quiz completed -->\n' +
+                                    '        <!-- <div class="col-lg-3 d-flex align-items-start">\n' +
+                                    '            21/63 completed\n' +
+                                    '        </div> -->\n' +
+                                    '    </div>\n' +
+                                    '</div>'
+                                )
+                            })
+                        } else {
+                            alert(data['errorMsg'])
+                        }
+                    }
+                });
+            })
+        }
     </script>
 </head>
 
-<body onload="document.getElementById('email').value = getCookie('email');">
+<body>
 <!-- Fixed navbar -->
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top purple-bkg px-5">
@@ -211,15 +377,16 @@
                                         <!-- Vertical tab menu -->
                                         <div class="nav flex-column nav-pills me-3 w-30" id="v-pills-tab" role="tablist"
                                              aria-orientation="vertical">
-                                            <button class="nav-link active" id="v-pills-all-tab"
-                                                    data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"
-                                                    role="tab" aria-controls="v-pills-all"
-                                                    aria-selected="true">All Subjects
-                                            </button>
-                                            <button class="nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"
-                                                    data-bs-target="#v-pills-group1" type="button" role="tab"
-                                                    aria-controls="v-pills-group1" aria-selected="false">Math
-                                            </button>
+                                            <div id="tabcontainer"></div>
+                                            <!--                                            <button class="nav-link active" id="v-pills-all-tab"-->
+                                            <!--                                                    data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"-->
+                                            <!--                                                    role="tab" aria-controls="v-pills-all"-->
+                                            <!--                                                    aria-selected="true">All Subjects-->
+                                            <!--                                            </button>-->
+                                            <!--                                            <button class="nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"-->
+                                            <!--                                                    data-bs-target="#v-pills-group1" type="button" role="tab"-->
+                                            <!--                                                    aria-controls="v-pills-group1" aria-selected="false">Math-->
+                                            <!--                                            </button>-->
                                         </div>
 
                                         <!-- Tab content -->
@@ -232,106 +399,9 @@
                                                 <div class="d-grid gap-3">
 
                                                     <!-- Student card -->
-                                                    <div class="card light-purple-bkg">
-                                                        <div class="row card-body g-4 row-cols-1 row-cols-lg-3 p-lg-3 align-items-center">
-                                                            <!-- Checkbox, avatar, student name, subject tags -->
-                                                            <div class="col-lg-7 d-flex align-items-center">
-                                                                <div>
-
-                                                                    <div class="d-flex align-items-center">
-                                                                        <div class="flex-shrink-0 me-3">
-                                                                            <img src="https://github.com/mdo.png" alt=""
-                                                                                 width="32" height="32"
-                                                                                 class="rounded-circle me-2">
-                                                                        </div>
-                                                                        <div>
-                                                                            <h6 class="dark-purple">
-                                                                                Student name
-                                                                            </h6>
-                                                                            <ul
-                                                                                    class="d-flex list-unstyled mt-auto mb-0">
-
-                                                                                <li
-                                                                                        class="d-flex align-items-center me-2">
-                                                                                    <span
-                                                                                            class="badge rounded-pill bg-warning dark-purple">Subject
-                                                                                        Name</span>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Average grade -->
-                                                            <!-- <div class="col-lg-2 d-flex align-items-start">
-                                                                <span class="dark-purple me-2">87%</span>
-                                                                <span class="badge purple-bkg text-white rounded-pill">B</span>
-                                                            </div> -->
-
-                                                            <!-- Quiz completed -->
-                                                            <!-- <div class="col-lg-3 d-flex align-items-start">
-                                                                21/63 completed
-                                                            </div> -->
-                                                        </div>
-                                                    </div>
+                                                    <div id="studentcontainer"></div>
                                                 </div>
                                             </div>
-
-                                            <!-- Tab 2 content -->
-                                            <div class="tab-pane fade" id="v-pills-group1" role="tabpanel"
-                                                 aria-labelledby="v-pills-group1-tab">
-
-                                                <!-- Student list -->
-                                                <div class="d-grid gap-3">
-
-                                                    <!-- Student card -->
-                                                    <div class="card light-purple-bkg">
-                                                        <div class="row card-body g-4 row-cols-1 row-cols-lg-3 p-lg-3 align-items-center">
-                                                            <!-- Checkbox, avatar, student name, subject tags -->
-                                                            <div class="col-lg-7 d-flex align-items-center">
-                                                                <div>
-
-                                                                    <div class="d-flex align-items-center">
-                                                                        <div class="flex-shrink-0 me-3">
-                                                                            <img src="https://github.com/mdo.png" alt=""
-                                                                                 width="32" height="32"
-                                                                                 class="rounded-circle me-2">
-                                                                        </div>
-                                                                        <div>
-                                                                            <h6 class="dark-purple">
-                                                                                Student name
-                                                                            </h6>
-                                                                            <ul
-                                                                                    class="d-flex list-unstyled mt-auto mb-0">
-
-                                                                                <li
-                                                                                        class="d-flex align-items-center me-2">
-                                                                                    <span
-                                                                                            class="badge rounded-pill bg-warning dark-purple">Subject
-                                                                                        Name</span>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Average grade -->
-                                                            <!-- <div class="col-lg-2 d-flex align-items-start">
-                                                                <span class="dark-purple me-2">87%</span>
-                                                                <span class="badge purple-bkg text-white rounded-pill">B</span>
-                                                            </div> -->
-
-                                                            <!-- Quiz completed -->
-                                                            <!-- <div class="col-lg-3 d-flex align-items-start">
-                                                                21/63 completed
-                                                            </div> -->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -372,6 +442,19 @@
                 }
             });
         });
+    });
+
+    // trigger quiz switch on/off event
+    $('body').on('click', '.form-check-input', function (event) {
+        var quizid = $(this).next('#hidden-quiz-id').text();
+        var checked = $(this).is(":checked")
+        updateQuizStatus(quizid, checked)
+    });
+
+    // trigger subject tab click event
+    $('body').on('click', '.subject', function (event) {
+        var subjectid = $(this).next('#hidden-subject-id').text();
+        showStudentlist(subjectid)
     });
 </script>
 

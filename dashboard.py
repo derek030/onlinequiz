@@ -4,20 +4,22 @@ from main import app, mysql
 
 badgelevel = {'bronze': 0, 'silver': 200, 'gold': 500, 'platinum': 1000, 'diamond': 2000}
 
+
 @app.route('/getQuizList', methods=['GET'])
 def getQuizList():
     errorMsg = ''  # output error message if error occurred
     result = {}
     if request.method == 'GET':
-        #args = request.args
+        # args = request.args
         user = session['user']
         userId = user['user_id']
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT UserQuiz.quiz_id,quiz_name, quiz_status, quiz_score, current_progress, score, status, subject_name "
-                       "from UserQuiz, Quiz, Subject "
-                       "where UserQuiz.quiz_id = Quiz.quiz_id "
-                       "and Quiz.subject_id = Subject.subject_id "
-                       "and user_id = %s", str(userId))
+        cursor.execute(
+            "SELECT UserQuiz.quiz_id,quiz_name, quiz_status, quiz_score, current_progress, score, status, subject_name "
+            "from UserQuiz, Quiz, Subject "
+            "where UserQuiz.quiz_id = Quiz.quiz_id "
+            "and Quiz.subject_id = Subject.subject_id "
+            "and user_id = %s", str(userId))
         # Fetch records and return result
         quizList = cursor.fetchall()
         if len(quizList) == 0:  # user does not have quiz
@@ -74,10 +76,12 @@ def getScore():
         print(nextbadge)
         result["success"] = True if errorMsg == '' else False
         result["errorMsg"] = errorMsg
-        result["data"] = {'current_score': total, 'current_badge': badge, "next_badge": nextbadge, "next_badge_score": nextbadgescore, "completed": completedcount}
+        result["data"] = {'current_score': total, 'current_badge': badge, "next_badge": nextbadge,
+                          "next_badge_score": nextbadgescore, "completed": completedcount}
         res = make_response(result)
 
         return res
+
 
 @app.route('/getLeaderboard', methods=['GET'])
 def getLeaderboard():
@@ -109,6 +113,98 @@ def getLeaderboard():
         result["success"] = True if errorMsg == '' else False
         result["errorMsg"] = errorMsg
         result["data"] = top5records
+        res = make_response(result)
+
+        return res
+
+
+@app.route('/updateQuizStatus', methods=['GET'])
+def updateQuizStatus():
+    errorMsg = ''  # output error message if error occurred
+    result = {}
+    if request.method == 'GET':
+        args = request.args
+        print(args)
+        qid = args['qid']
+        currentStatus = args['currentStatus']
+        cursor = mysql.connection.cursor()
+        cursor.execute("UPDATE Quiz "
+                       "SET quiz_status = %s WHERE quiz_id = %s;",
+                       (str(currentStatus), qid))
+        rows_affected = cursor.rowcount
+        if rows_affected == 0:
+            errorMsg = "Nothing Updated"
+        # Saving the Actions performed on the DB
+        mysql.connection.commit()
+        # Closing the cursor
+        cursor.close()
+
+        result["success"] = True if errorMsg == '' else False
+        result["errorMsg"] = errorMsg
+        result["data"] = ""
+        res = make_response(result)
+
+        return res
+
+
+@app.route('/getEnrolledSubject', methods=['GET'])
+def getEnrolledSubject():
+    errorMsg = ''  # output error message if error occurred
+    result = {}
+    if request.method == 'GET':
+        user = session['user']
+        userId = user['user_id']
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT UserSubject.user_id, user_name, user_type, UserSubject.subject_id, subject_name "
+                       "FROM UserSubject, User, Subject "
+                       "WHERE UserSubject.user_id = User.user_id "
+                       "AND UserSubject.subject_id = Subject.subject_id "
+                       "AND User.user_id = %s ", str(userId))
+        # Fetch records and return result
+        recordlist = cursor.fetchall()
+        print(recordlist)
+        # Saving the Actions performed on the DB
+        mysql.connection.commit()
+        # Closing the cursor
+        cursor.close()
+
+        result["success"] = True if errorMsg == '' else False
+        result["errorMsg"] = errorMsg
+        result["data"] = recordlist
+        res = make_response(result)
+
+        return res
+
+
+@app.route('/getSubjectStudentResults', methods=['GET'])
+def getSubjectStudentResults():
+    errorMsg = ''  # output error message if error occurred
+    result = {}
+    if request.method == 'GET':
+        args = request.args
+        target = args['subjectid']
+        print(target)
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT Quiz.subject_id, subject_name, sum(score) as total, user_name "
+                       "FROM UserQuiz, User, Quiz, Subject, UserSubject "
+                       "WHERE UserQuiz.user_id = User.user_id "
+                       "AND UserQuiz.quiz_id = Quiz.quiz_id "
+                       "AND Quiz.subject_id = Subject.subject_id "
+                       "AND UserSubject.user_id = User.user_id "
+                       "AND UserSubject.subject_id = Subject.subject_id "
+                       "AND user_type = 'student' AND status = 'completed' AND Quiz.subject_id IN (%s) "
+                       "GROUP BY Quiz.subject_id, user_name", (target,))
+        # Fetch records and return result
+        recordlist = cursor.fetchall()
+        print(recordlist)
+        # Saving the Actions performed on the DB
+        mysql.connection.commit()
+        # Closing the cursor
+        cursor.close()
+
+        result["success"] = True if errorMsg == '' else False
+        result["errorMsg"] = errorMsg
+        result["data"] = recordlist
         res = make_response(result)
 
         return res
