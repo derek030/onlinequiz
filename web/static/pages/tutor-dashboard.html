@@ -168,19 +168,13 @@
                     if (data.success) {
                         $("#tabcontainer").html(
                             $("#tabcontainer").html() +
-                            '<button class="subject nav-link active" id="v-pills-all-tab"\n' +
-                            '        data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"\n' +
-                            '        role="tab" aria-controls="v-pills-all"\n' +
-                            '        aria-selected="true">All Subjects\n' +
-                            '</button>'
+                            '<button class="subject nav-link active" id="v-pills-all-tab" data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button" role="tab" aria-controls="v-pills-all" aria-selected="true">All Subjects</button>'
                         )
                         data.data.forEach(function (subject) {
                             subjectidlist.push(subject['subject_id'])
                             $("#tabcontainer").html(
                                 $("#tabcontainer").html() +
-                                '<button class="subject nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"\n' +
-                                '        data-bs-target="#v-pills-group1" type="button" role="tab"\n' +
-                                '        aria-controls="v-pills-group1" aria-selected="false">' +
+                                '<button class="subject nav-link" id="v-pills-group1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-group1" type="button" role="tab" aria-controls="v-pills-group1" aria-selected="false">' +
                                 subject['subject_name'] +
                                 '</button>' +
                                 '<div id="hidden-subject-id" class="hidden-subject-id" style="display: none;">' +
@@ -377,16 +371,11 @@
                                         <!-- Vertical tab menu -->
                                         <div class="nav flex-column nav-pills me-3 w-30" id="v-pills-tab" role="tablist"
                                              aria-orientation="vertical">
-                                            <div id="tabcontainer"></div>
-                                            <!--                                            <button class="nav-link active" id="v-pills-all-tab"-->
-                                            <!--                                                    data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button"-->
-                                            <!--                                                    role="tab" aria-controls="v-pills-all"-->
-                                            <!--                                                    aria-selected="true">All Subjects-->
-                                            <!--                                            </button>-->
-                                            <!--                                            <button class="nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"-->
-                                            <!--                                                    data-bs-target="#v-pills-group1" type="button" role="tab"-->
-                                            <!--                                                    aria-controls="v-pills-group1" aria-selected="false">Math-->
-                                            <!--                                            </button>-->
+                                            <div class="nav flex-column nav-pills me-3" id="tabcontainer" role="tablist" aria-orientation="vertical"></div>
+                                            <!-- <button class="nav-link active" id="v-pills-all-tab"data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button" role="tab" aria-controls="v-pills-all"
+                                            aria-selected="true">All Subjects
+                                            </button>                                          <button class="nav-link" id="v-pills-group1-tab" data-bs-toggle="pill"data-bs-target="#v-pills-group1" type="button" role="tab" aria-controls="v-pills-group1" aria-selected="false">Math
+                                           </button> -->
                                         </div>
 
                                         <!-- Tab content -->
