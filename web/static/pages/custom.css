@@ -96,37 +96,6 @@ hr{
   background-color: #ffc107;
 }
 
-#correctFeedback{
-  transition: 0.5s;
-  display: none;
-}
-
-#correctFeedback.show{
-  opacity: 0;
-  display: block;
-}
-
-/* Tutor dashboard */
-.nav-tabs .nav-link{
-  color: #3C3792 !important;
-}
-
-.nav-tabs .nav-link.active, .nav-pills .nav-link.active{
-  background-color: #655CF5 !important;
-  border: none !important;
-  color: #fff !important;
-}
-
-.form-check-input:checked{
-  background-color:#75E209 !important;
-  border: none !important;
-}
-
-#v-pills-tab{
-  width: 30% !important;
-}
-
-/* Quiz gameplay */
 .correct-feedback {
   color: white;
   text-shadow: 6px 6px #0cc509;
@@ -153,6 +122,25 @@ hr{
   transition: width 5s linear;
 }
 
+/* Tutor dashboard */
+.nav-tabs .nav-link{
+  color: #3C3792 !important;
+}
+
+.nav-tabs .nav-link.active, .nav-pills .nav-link.active{
+  background-color: #655CF5 !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.form-check-input:checked{
+  background-color:#75E209 !important;
+  border: none !important;
+}
+
+#v-pills-tab{
+  width: 30% !important;
+}
 
 /* Import bootstrap -- STAY AT THE BOTTOM OF THE PAGE */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';

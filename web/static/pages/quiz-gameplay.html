@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
     <!-- Bootstrap stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="custom.css">
     <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
 
-    <link rel="shortcut icon" href="./assets/img/favicon.ico"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Student Dashboard | Instatue Quiz Platform</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -83,10 +83,10 @@
         })
 
         // Correct answer feedback
-        function correctAnswerFeedback(){
+        function correctAnswerFeedback() {
             document.getElementById('correctFeedback').style.display = 'block'
             document.getElementById('quizGameplayContent').style.display = 'none'
-            setTimeout(function(){
+            setTimeout(function () {
                 document.getElementById('correctFeedback').style.display = 'none'
             }, 1400)
         }
@@ -95,30 +95,46 @@
         function wrongAnswerFeedback() {
             document.getElementById('wrongFeedback').style.display = 'block'
             document.getElementById('quizGameplayContent').style.display = 'none'
-            setTimeout(function(){
+            setTimeout(function () {
                 document.getElementById('wrongFeedback').style.display = 'none'
             }, 1400)
         }
 
         // Progress bar timer - 15 seconds
-        function countDownTimer(){
-            let interval = 10;
-            var countDown = setInterval(() =>{
-                interval--;
-                let i = interval / 10 * 100
-                if (interval > 0){
-                    $('.progress-bar').css('width', i + '%');
-                } else if (interval <= 0){
-                    clearInterval(countDown)
-                    $('.progress-bar').css('width', 0 + '%');
-                } 
-            }, 1000); 
-        }
+        var remainingTime = 15;     
+        var timer;      // variable to store time interval
+        var isStopped = true;   // Variable to track whether timer is running or not
 
-        function updateContent() {          
+        const startTimer = () => {
+            if (isStopped) {
+                isStopped = false;
+                timer = setInterval(countDown, 1000);
+            }
+        };
+
+        const resetTimer = () => {
+            isStopped = true;
+            clearInterval(timer);
+            remainingTime = 15;
+        };
+
+        const countDown = () => {
+            remainingTime--;
+            let progressWidth = (remainingTime-5) / 15 * 100
+            $('.progress-bar').css('width', progressWidth + '%');
+            // console.log(remainingTime);
+            if (remainingTime === 0){
+                $('.progress-bar').css('width', 0 + '%');
+                clearInterval(countDown);
+                isStopped = true;
+                remainingTime = 15;
+                checkAnswer('nil');
+            }
+        };
+
+        function updateContent() {
             if (questionlist.length > 0) {
-                countDownTimer()
-                
+                startTimer();
                 var currentquestion = questionlist[pointer]
                 $("#progressbarcontainer").html("")
                 $("#progressbarcontainer").html($("#progressbarcontainer").html() +
@@ -141,7 +157,7 @@
 
                 $("#answercontainer").html("")
                 $("#answercontainer").html($("#answercontainer").html() +
-                '<div class="container d-grid">\n' +
+                    '<div class="container d-grid">\n' +
                     '    <div class="row align-items-md-stretch g-4">\n' +
                     '        <div class="col-md-6">\n' +
                     '            <div class="optionA answer h-100">\n' +
@@ -185,17 +201,13 @@
                     '     </div>\n' +
                     '</div>'
                 )
-
-                // Times up action
-                setTimeout(() =>{
-                    checkAnswer('nil');
-                }, 15000);
             } else {
                 // quiz finish
             }
         }
 
         function checkAnswer(answer) {
+            resetTimer();
             var correctAns = questionlist[pointer]['correct_answer']
             var isCorrect = 0
             var currentStatus = "in progress"
@@ -204,12 +216,16 @@
                 correctAnswerFeedback()
                 isCorrect = 1
                 totalmark += mark
+                interval = 0;
+                console.log(interval);
             } else {
                 wrongAnswerFeedback()
+                interval = 0;
+                console.log(interval);
             }
-            if (pointer === questionlist.length-1) {
+            if (pointer === questionlist.length - 1) {
                 currentStatus = "completed"
-            } 
+            }
             $(function () {
                 $.ajax({
                     type: "GET",
@@ -220,7 +236,7 @@
                         questionid: questionlist[pointer]['question_id'],
                         answer: answer,
                         isCorrect: isCorrect,
-                        currentprogress: pointer+1,
+                        currentprogress: pointer + 1,
                         totalmark: totalmark,
                         currentStatus: currentStatus
                     },
@@ -245,60 +261,62 @@
 </head>
 
 <body id="page-top">
-<!-- Body -->
-<div class="cover-container purple-bkg">
-    <div class="container px-4 px-lg-5 h-100">
-        <div id="loader" class="row py-5" style="display: none">
-            <div class="col-lg-6 col-md-8 mx-auto text-center py-5">
-                <div class="spinner-border text-white" style="width: 3rem; height: 3rem;" role="status"></div>
-                <h4 class="text-white my-4">Loading...</h4>
-            </div>
-        </div>
-        
-        <!-- Correct answer feedback element -->
-        <div id="correctFeedback" class="row py-5" style="display: none">
-            <div class="col-lg-6 col-md-8 mx-auto text-center">
-                <img src="./media/feedback-correct.png" alt="Correct">
-                <h1 class="correct-feedback">Correct</h1>
-                <h2 class="correct-feedback">
-                    <span>+</span>
-                    <span>20</span>
-                    <img src="./media/diamond-with-border.png" class="img-fluid rounded diamondscore" alt="diamond"/>
-                </h2>
-            </div>
-        </div>
-
-        <!-- Wrong answer feedback element -->
-        <div id="wrongFeedback" class="row py-5" style="display: none">
-            <div class="col-lg-6 col-md-8 mx-auto text-center">
-                <img src="./media/feedback-wrong.png" alt="Wrong">
-                <h1 class="wrong-feedback">Wrong</h1>
-                <h2 class="wrong-feedback">
-                    <span>-</span>
-                    <span>20</span>
-                    <img src="./media/diamond-with-border.png" class="img-fluid rounded diamondscore" alt="diamond"/>
-                </h2>
-            </div>
-        </div>
-
-        <div id="quizGameplayContent"
-             class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-            <!-- Progress bar -->
-            <div class="col-lg-12 align-self-end">
-                <div id="progressbarcontainer" ></div>
-                
+    <!-- Body -->
+    <div class="cover-container purple-bkg">
+        <div class="container px-4 px-lg-5 h-100">
+            <div id="loader" class="row py-5" style="display: none">
+                <div class="col-lg-6 col-md-8 mx-auto text-center py-5">
+                    <div class="spinner-border text-white" style="width: 3rem; height: 3rem;" role="status"></div>
+                    <h4 class="text-white my-4">Loading...</h4>
+                </div>
             </div>
 
-            <!-- Question -->
-            <div id="questioncontainer"></div>
+            <!-- Correct answer feedback element -->
+            <div id="correctFeedback" class="row py-5" style="display: none">
+                <div class="col-lg-6 col-md-8 mx-auto text-center">
+                    <img src="./media/feedback-correct.png" alt="Correct">
+                    <h1 class="correct-feedback">Correct</h1>
+                    <h2 class="correct-feedback">
+                        <span>+</span>
+                        <span>20</span>
+                        <img src="./media/diamond-with-border.png" class="img-fluid rounded diamondscore"
+                            alt="diamond" />
+                    </h2>
+                </div>
+            </div>
 
-            <!-- Answers -->
-            <div id="answercontainer"></div>
+            <!-- Wrong answer feedback element -->
+            <div id="wrongFeedback" class="row py-5" style="display: none">
+                <div class="col-lg-6 col-md-8 mx-auto text-center">
+                    <img src="./media/feedback-wrong.png" alt="Wrong">
+                    <h1 class="wrong-feedback">Wrong</h1>
+                    <h2 class="wrong-feedback">
+                        <span>-</span>
+                        <span>20</span>
+                        <img src="./media/diamond-with-border.png" class="img-fluid rounded diamondscore"
+                            alt="diamond" />
+                    </h2>
+                </div>
+            </div>
 
+            <div id="quizGameplayContent"
+                class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <!-- Progress bar -->
+                <div class="col-lg-12 align-self-end">
+                    <div id="progressbarcontainer"></div>
+
+                </div>
+
+                <!-- Question -->
+                <div id="questioncontainer"></div>
+
+                <!-- Answers -->
+                <div id="answercontainer"></div>
+
+            </div>
         </div>
     </div>
-</div>
-<!--<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>-->
+    <!--<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>-->
 </body>
 
 <script>
