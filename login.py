@@ -2,6 +2,8 @@ from flask import request, session, make_response, redirect
 
 from main import app, mysql
 
+from hashlib import sha256
+
 import re
 
 # Regular expression for validating an Email
@@ -15,6 +17,9 @@ def check(email):
     else:
         return False
 
+def hash_password(password):
+    # returns the hashed version of a string
+    return sha256(password.encode('utf-8')).hexdigest()
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -26,10 +31,12 @@ def login():
         isRememberme = bool('rememberme' in request.form and request.form['rememberme'] == 'on')
         print("useremail:" + useremail)
         print("userpassword:" + userpassword)
+        print(sha256(userpassword.encode('utf-8')).hexdigest())
         if check(useremail):        # valid email format
             cursor = mysql.connection.cursor()
-            cursor.execute("SELECT user_id, user_name, user_type FROM User WHERE email = %s AND  pwd = %s",
-                           (useremail, userpassword))
+            cursor.execute("SELECT user_id, user_name, user_type FROM User "
+                           "WHERE email = %s AND  hashed_pwd = %s",
+                           (useremail, hash_password(userpassword)))
             # Fetch one record and return result
             user = cursor.fetchone()
             if user is None:  # user not exist
