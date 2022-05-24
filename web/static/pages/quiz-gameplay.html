@@ -89,6 +89,8 @@
             setTimeout(function () {
                 document.getElementById('correctFeedback').style.display = 'none'
             }, 1400)
+            var audioCorrect = new Audio('./media/correct-answer.mp3');
+            audioCorrect.play();
         }
 
         // Wrong answer feedback
@@ -98,6 +100,8 @@
             setTimeout(function () {
                 document.getElementById('wrongFeedback').style.display = 'none'
             }, 1400)
+            var audioWrong = new Audio('./media/negative-answer.mp3');
+            audioWrong.play();
         }
 
         // Progress bar timer - 15 seconds
@@ -123,6 +127,11 @@
             let progressWidth = (remainingTime-5) / 15 * 100
             $('.progress-bar').css('width', progressWidth + '%');
             // console.log(remainingTime);
+            if (remainingTime === 4){
+                var audioTimer = new Audio('./media/countdown-2.mp3');
+                audioTimer.play();
+                console.log("Timer audio played")
+            }
             if (remainingTime === 0){
                 $('.progress-bar').css('width', 0 + '%');
                 clearInterval(countDown);
