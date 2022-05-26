@@ -2,6 +2,9 @@ from flask import request, session, make_response, redirect
 
 from main import app, mysql
 
+# Author: Chun Hin Chan(103846278)
+
+
 from hashlib import sha256
 
 import re

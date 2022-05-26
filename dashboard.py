@@ -1,3 +1,6 @@
+# Author: Chun Hin Chan(103846278)
+
+
 from flask import request, session, make_response, redirect
 
 from main import app, mysql

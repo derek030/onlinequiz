@@ -1,3 +1,6 @@
+# Author: Chun Hin Chan(103846278)
+
+
 from flask import Flask
 from flask_mysqldb import MySQL
 import os

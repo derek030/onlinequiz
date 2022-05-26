@@ -138,11 +138,13 @@
                 success: function (data) {
                     if (data.success) {
                         // Current score percentage to next badge
-                        var nextStageProgress = (
-                            (data.data['current_score'] / (data.data['current_score'] + data.data['next_badge_score'])) * 100
-                        );
+                        var currentScore = data.data['current_score'];
+                        var nextStageScore = data.data['next_badge_score'];
 
                         // Link nextStageProgress to bootstrap progress bar
+                        var nextStageProgress = (
+                            (currentScore / nextStageScore) * 100
+                        );
                         $('#progressbar').attr('aria-valuenow', nextStageProgress).css('width', nextStageProgress + '%');
 
                         $("#mybadge").html($("#mybadge").html() +
@@ -167,13 +169,12 @@
                         )
 
                         $("#mynextbadgescore").html($("#mynextbadgescore").html() +
-                            (data.data['next_badge_score'] - data.data['current_score']) +
+                            (nextStageScore - currentScore) +
                             '<img src="./media/diamond.svg" class="img-fluid rounded" alt="diamond" /> \n' +
                             'to level up'
                         )
 
                         // Show corresponding badge image depending on current score
-                        var currentScore = data.data['current_score'];
                         if (currentScore < 200) {
                             var bronzeBadge = document.getElementById('bronzeBadge');
                             bronzeBadge.style.display = 'block';
