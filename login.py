@@ -1,9 +1,9 @@
+# Author: Chun Hin Chan(103846278)
+# all api related to login function
+
 from flask import request, session, make_response, redirect
 
 from main import app, mysql
-
-# Author: Chun Hin Chan(103846278)
-
 
 from hashlib import sha256
 
@@ -20,10 +20,13 @@ def check(email):
     else:
         return False
 
+
 def hash_password(password):
     # returns the hashed version of a string
     return sha256(password.encode('utf-8')).hexdigest()
 
+
+# main login api
 @app.route('/login', methods=['POST'])
 def login():
     errorMsg = ''  # output error message if error occurred
@@ -35,7 +38,7 @@ def login():
         print("useremail:" + useremail)
         print("userpassword:" + userpassword)
         print(sha256(userpassword.encode('utf-8')).hexdigest())
-        if check(useremail):        # valid email format
+        if check(useremail):  # valid email format
             cursor = mysql.connection.cursor()
             cursor.execute("SELECT user_id, user_name, user_type FROM User "
                            "WHERE email = %s AND  hashed_pwd = %s",
@@ -70,6 +73,7 @@ def login():
         return res
 
 
+# main logout api
 @app.route('/logout', methods=['POST'])
 def logout():
     errorMsg = ''  # output error message if error occurred

@@ -1,13 +1,15 @@
 # Author: Chun Hin Chan(103846278)
-
+# all api related to dashboard (student and tutor) function
 
 from flask import request, session, make_response, redirect
 
 from main import app, mysql
 
+# Badge level
 badgelevel = {'bronze': 0, 'silver': 200, 'gold': 500, 'platinum': 1000, 'diamond': 2000}
 
 
+# get quiz list api
 @app.route('/getQuizList', methods=['GET'])
 def getQuizList():
     errorMsg = ''  # output error message if error occurred
@@ -40,6 +42,7 @@ def getQuizList():
         return res
 
 
+# get student score api
 @app.route('/getScore', methods=['GET'])
 def getScore():
     errorMsg = ''  # output error message if error occurred
@@ -86,6 +89,7 @@ def getScore():
         return res
 
 
+# get leaderboard information api
 @app.route('/getLeaderboard', methods=['GET'])
 def getLeaderboard():
     errorMsg = ''  # output error message if error occurred
@@ -121,6 +125,7 @@ def getLeaderboard():
         return res
 
 
+# update quiz status api
 @app.route('/updateQuizStatus', methods=['GET'])
 def updateQuizStatus():
     errorMsg = ''  # output error message if error occurred
@@ -150,6 +155,7 @@ def updateQuizStatus():
         return res
 
 
+# get enrolled subject api
 @app.route('/getEnrolledSubject', methods=['GET'])
 def getEnrolledSubject():
     errorMsg = ''  # output error message if error occurred
@@ -179,6 +185,7 @@ def getEnrolledSubject():
         return res
 
 
+# get subject's student result api
 @app.route('/getSubjectStudentResults', methods=['GET'])
 def getSubjectStudentResults():
     errorMsg = ''  # output error message if error occurred
