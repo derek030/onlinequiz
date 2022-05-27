@@ -75,7 +75,13 @@
                         data.data.forEach(function (question) {
                             questionlist.push(question)
                         })
-                        updateContent()
+                        if (pointer === 0) {
+                            updateContent()
+                        } else {
+                            setTimeout(function () {
+                                updateContent()
+                            }, 1400)
+                        }
                     } else {
                         alert(data['errorMsg'])
                     }
