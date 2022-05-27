@@ -187,16 +187,32 @@ def getSubjectStudentResults():
         args = request.args
         target = args['subjectid']
         print(target)
+        subject_ids = target.split(", ")
+        print(subject_ids)
+        print(tuple(subject_ids))
+        if len(subject_ids) > 1:
+            query = 'SELECT Quiz.subject_id, subject_name, user_name ' \
+                    'FROM UserQuiz, User, Quiz, Subject, UserSubject ' \
+                    'WHERE UserQuiz.user_id = User.user_id ' \
+                    'AND UserQuiz.quiz_id = Quiz.quiz_id ' \
+                    'AND Quiz.subject_id = Subject.subject_id ' \
+                    'AND UserSubject.user_id = User.user_id ' \
+                    'AND UserSubject.subject_id = Subject.subject_id ' \
+                    'AND user_type = \'student\' AND status = \'completed\' ' \
+                    'AND Quiz.subject_id IN {} '.format(tuple(subject_ids))
+        else:
+            query = 'SELECT Quiz.subject_id, subject_name, user_name ' \
+                    'FROM UserQuiz, User, Quiz, Subject, UserSubject ' \
+                    'WHERE UserQuiz.user_id = User.user_id ' \
+                    'AND UserQuiz.quiz_id = Quiz.quiz_id ' \
+                    'AND Quiz.subject_id = Subject.subject_id ' \
+                    'AND UserSubject.user_id = User.user_id ' \
+                    'AND UserSubject.subject_id = Subject.subject_id ' \
+                    'AND user_type = \'student\' AND status = \'completed\' ' \
+                    'AND Quiz.subject_id = {} '.format(str(target))
+        print(query)
         cursor = mysql.connection.cursor()
-        cursor.execute("SELECT Quiz.subject_id, subject_name, sum(score) as total, user_name "
-                       "FROM UserQuiz, User, Quiz, Subject, UserSubject "
-                       "WHERE UserQuiz.user_id = User.user_id "
-                       "AND UserQuiz.quiz_id = Quiz.quiz_id "
-                       "AND Quiz.subject_id = Subject.subject_id "
-                       "AND UserSubject.user_id = User.user_id "
-                       "AND UserSubject.subject_id = Subject.subject_id "
-                       "AND user_type = 'student' AND status = 'completed' AND Quiz.subject_id IN (%s) "
-                       "GROUP BY Quiz.subject_id, user_name", (target,))
+        cursor.execute(query)
         # Fetch records and return result
         recordlist = cursor.fetchall()
         print(recordlist)
